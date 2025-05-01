@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import SandZ.Tutors.R;
+import com.example.clarix.R;
 
 public class SubjectAdapter extends ArrayAdapter<String> {
     private final List<String> teacherSubjects;

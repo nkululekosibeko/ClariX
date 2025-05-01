@@ -21,4 +21,46 @@
 
     <string name="register_as_teacher">REGISTER AS TEACHER</string>
     <string name="toggle_to_register_as_a_teacher_or_student">Toggle to register as a teacher or student</string>
+
+
+    <string name="login">LOGIN</string>
+    <string name="password">PASSWORD</string>
+    <string name="email">EMAIL</string>
+    <string name="register">REGISTER</string>
+    <string name="logout">LOGOUT</string>
+    <string name="click_to_register">Click to Register</string>
+    <string name="click_to_login">Click to Login</string>
+    <string name="my_meetings">My meetings:</string>
+    <string name="login_button">Login button</string>
+    <string name="go_to_registration_screen">Go to registration screen</string>
+    <string name="login_screen_title">Login screen title</string>
+    <string name="add_new_term_button">Add new term button</string>
+    <string name="plus">+</string>
+    <string name="select_date_on_calendar">Select date on calendar</string>
+    <string name="date_yyyy_mm_dd">Date: YYYY-MM-DD</string>
+    <string name="meeting_link">Meeting link</string>
+    <string name="add_new_term">Add new term</string>
+    <string name="header_add_new_term">Header: Add new term</string>
+    <string name="time_hh_mm">Time: HH:MM</string>
+    <string name="list_of_meetings">List of meetings</string>
+    <string name="header_my_meetings">Header: My meetings</string>
+    <string name="register_button">Register button</string>
+    <string name="enter_your_email_address">Enter your email address</string>
+    <string name="link_to_go_back_to_login_screen">Link to go back to login screen</string>
+    <string name="name">Name</string>
+    <string name="header_register">Header: Register</string>
+    <string name="your_surname">Your surname</string>
+    <string name="list_of_available_terms_for_reservation">List of available terms for reservation</string>
+    <string name="select_a_date_for_term_reservation">Select a date for term reservation</string>
+    <string name="reserve_term_at">Reserve Term at:</string>
+    <string name="headline_select_a_date_for_term_reservation">Headline: Select a date for term reservation</string>
+    <string name="sort_alphabetically">Sort alphabetically</string>
+    <string name="list_of_available_tutors">List of available tutors</string>
+    <string name="sort_by_price">Sort by price</string>
+    <string name="sort_by_rating">Sort by rating</string>
+    <string name="subjects">Subjects</string>
+    <string name="filter_tutors_by_subjects">Filter tutors by subjects</string>
+    <string name="search_for_tutor">Search for tutor</string>
+    <string name="setPrice">set your price</string>
+    <string name="addTerm">add new term</string>
 </resources>

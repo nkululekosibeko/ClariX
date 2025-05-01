@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import SandZ.Tutors.R;
-import SandZ.Tutors.data.classes.Meeting;
+import com.example.clarix.R;
+import com.example.clarix.data.classes.Meeting;
 
 public class MeetingAdapter extends ArrayAdapter<Meeting> {
 

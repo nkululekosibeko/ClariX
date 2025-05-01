@@ -13,8 +13,8 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import SandZ.Tutors.R;
-import SandZ.Tutors.data.classes.TeacherClass;
+import com.example.clarix.R;
+import com.example.clarix.data.classes.TeacherClass;
 
 public class TutorListAdapter extends ArrayAdapter<TeacherClass> {
 
