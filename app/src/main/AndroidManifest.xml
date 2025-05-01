@@ -12,12 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ClariX"
         tools:targetApi="31">
-        <activity
-            android:name=".activities.TeacherMainView"
-            android:exported="false" />
-        <activity
-            android:name=".activities.StudentMainView"
-            android:exported="false" />
+
         <activity
             android:name=".activities.Welcome"
             android:exported="true">
@@ -27,12 +22,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".activities.LoginView"
+            android:name=".activities.SelectProfilePictureView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ReserveTermView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TeacherAccountView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TutorBrowserView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.SubjectView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.AddingTermView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TeacherTermsView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MeetingsView"
+            android:exported="false" />
+        <activity
+            android:name=".activities.StudentMainView"
             android:exported="false" />
         <activity
             android:name=".activities.RegisterView"
             android:exported="false" />
-    </application>
+        <activity
+            android:name=".activities.LoginView"
+            android:exported="true"/>
+        <activity
+            android:name=".activities.TeacherMainView"
+            android:exported="true" />
 
+    </application>
 </manifest>
