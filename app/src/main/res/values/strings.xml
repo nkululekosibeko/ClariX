@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">ClariX</string>
+    <string name="welcome_txt">
+    Welcome to Clarix — your space for smarter, peer-driven learning.\nWe’re glad to have you on this journey!
+    </string>
+
+    <string name="hey_welcome_to_your_dashboard">Hey, Welcome to your Dashboard</string>
+    <string-array name="roles_array">
+        <item>Student</item>
+        <item>Tutor</item>
+    </string-array>
+    <string-array name="time_slots">
+        <item>09:00 AM</item>
+        <item>10:00 AM</item>
+        <item>11:00 AM</item>
+        <item>12:00 PM</item>
+        <item>01:00 PM</item>
+        <item>02:00 PM</item>
+        <item>03:00 PM</item>
+    </string-array>
+
+    <string name="register_as_teacher">REGISTER AS TEACHER</string>
+    <string name="toggle_to_register_as_a_teacher_or_student">Toggle to register as a teacher or student</string>
 </resources>
