@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "972296698872",
+    "project_id": "clarix-c081b",
+    "storage_bucket": "clarix-c081b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972296698872:android:d8cd00061afc5a87aa740d",
+        "android_client_info": {
+          "package_name": "com.example.clarix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpN1VQeFOS5p1r0P8nzlWlRJmisQCMfXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activites.SelectProfilePictureView">
+
+    <TableLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Table of profile pictures">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="First row of profile pictures">
+
+            <ImageView
+                android:id="@+id/imageChoose1"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/men1"
+                android:contentDescription="Profile picture 1" />
+
+            <ImageView
+                android:id="@+id/imageChoose2"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/men2"
+                android:contentDescription="Profile picture 2" />
+
+            <ImageView
+                android:id="@+id/imageChoose3"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/women1"
+                android:contentDescription="Profile picture 3" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Second row of profile pictures">
+
+            <ImageView
+                android:id="@+id/imageChoose4"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/women2"
+                android:contentDescription="Profile picture 4" />
+
+            <ImageView
+                android:id="@+id/imageChoose5"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/boy1"
+                android:contentDescription="Profile picture 5" />
+
+            <ImageView
+                android:id="@+id/imageChoose6"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/boy2"
+                android:contentDescription="Profile picture 6" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="Third row of profile pictures">
+
+            <ImageView
+                android:id="@+id/imageChoose7"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/girl1"
+                android:contentDescription="Profile picture 7" />
+
+            <ImageView
+                android:id="@+id/imageChoose8"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/girl2"
+                android:contentDescription="Profile picture 8" />
+
+            <ImageView
+                android:id="@+id/imageChoose9"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/cat"
+                android:contentDescription="Profile picture 9" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="390dp"
+            android:layout_height="130dp"
+            android:contentDescription="Last row of profile pictures">
+
+            <ImageView
+                android:id="@+id/imageChoose10"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/monkey"
+                android:contentDescription="Profile picture 10" />
+
+            <ImageView
+                android:id="@+id/imageChoose11"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/seal"
+                android:contentDescription="Profile picture 11" />
+
+            <ImageView
+                android:id="@+id/imageChoose12"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_weight="1"
+                android:src="@drawable/annonym"
+                android:contentDescription="Profile picture 12" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="Select new image:"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="Select new image label" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -99,7 +99,7 @@
                 android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/signup_button"
+                android:id="@+id/btn_register"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
