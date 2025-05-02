@@ -2,9 +2,139 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pagebkg_main"
     tools:context=".activities.TeacherMainView">
 
+    <!-- Main Container -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/container_background"
+        android:padding="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_logout">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="My Account"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/teal_blue"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Profile Picture -->
+        <ImageView
+            android:id="@+id/profilePictureTeacher"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Teacher profile picture"
+            app:layout_constraintTop_toBottomOf="@id/textView7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <!-- Credentials -->
+        <TextView
+            android:id="@+id/credentials"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Teacher Name / Info"
+            android:textAlignment="center"
+            android:textColor="@color/teal_blue"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/profilePictureTeacher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Row 1: Meetings + Terms -->
+        <LinearLayout
+            android:id="@+id/row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/credentials"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnTeacherMeetings"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:contentDescription="@string/my_meetings"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@mipmap/meetings" />
+
+            <ImageButton
+                android:id="@+id/btnTeacherTerms"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="24dp"
+                android:contentDescription="@string/addTerm"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@mipmap/terms" />
+        </LinearLayout>
+
+        <!-- Row 2: Subjects + Price -->
+        <LinearLayout
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/row1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnSubjects"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:contentDescription="@string/subjects"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@mipmap/subjects" />
+
+            <ImageButton
+                android:id="@+id/btnPrice"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="24dp"
+                android:contentDescription="@string/setPrice"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@mipmap/price" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Logout Button pinned to bottom -->
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_background"
+        android:text="Logout"
+        android:textColor="@color/beige"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

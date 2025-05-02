@@ -1,104 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pagebkg_main"
     tools:context=".activities.TeacherAccountView">
 
-    <TextView
-        android:id="@+id/textView6"
+    <!-- Container Card -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="Tutor Page"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:contentDescription="Tutor Page Header"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/profile_picutre"
-        android:layout_width="184dp"
-        android:layout_height="175dp"
-        android:layout_marginStart="141dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="141dp"
-        android:contentDescription="Profile Picture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/container_background"
+        android:padding="24dp"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintBottom_toTopOf="@+id/show_terms_calendar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <Button
+        <!-- Header -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Tutor Page"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/teal_blue"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Profile Picture -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profile_picutre"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="Profile Picture"
+            app:layout_constraintTop_toBottomOf="@id/textView6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <!-- Name -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Name"
+            android:textAlignment="center"
+            android:textColor="@color/teal_blue"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/profile_picutre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Surname -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/surname_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Surname"
+            android:textAlignment="center"
+            android:textColor="@color/teal_blue"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/name_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Rating -->
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:numStars="5"
+            android:stepSize="1"
+            android:contentDescription="Tutor Rating"
+            app:layout_constraintTop_toBottomOf="@id/surname_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Subjects -->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/subject_list_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Subjects: Math, Physics"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/teal_blue"
+            android:textStyle="italic"
+            android:contentDescription="List of Subjects"
+            app:layout_constraintTop_toBottomOf="@id/ratingBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Bottom Button -->
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/show_terms_calendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="64dp"
-        android:text="Show terms calendar"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_background"
+        android:text="Show Calendar"
+        android:textColor="@color/beige"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:contentDescription="Show Terms Calendar Button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/name_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="420dp"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:contentDescription="Name of the Tutor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/surname_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:contentDescription="Surname of the Tutor"
-        app:layout_constraintBottom_toTopOf="@+id/show_terms_calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_text"
-        app:layout_constraintVertical_bias="0.098" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Rating of the Tutor"
-        app:layout_constraintBottom_toTopOf="@+id/show_terms_calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/surname_text"
-        app:layout_constraintVertical_bias="0.145" />
-
-    <TextView
-        android:id="@+id/subject_list_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Subjects: "
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:contentDescription="List of Subjects"
-        app:layout_constraintBottom_toTopOf="@+id/show_terms_calendar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

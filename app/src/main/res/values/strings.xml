@@ -30,7 +30,7 @@
     <string name="logout">LOGOUT</string>
     <string name="click_to_register">Click to Register</string>
     <string name="click_to_login">Click to Login</string>
-    <string name="my_meetings">My meetings:</string>
+    <string name="my_meetings">My meetings</string>
     <string name="login_button">Login button</string>
     <string name="go_to_registration_screen">Go to registration screen</string>
     <string name="login_screen_title">Login screen title</string>
@@ -52,7 +52,7 @@
     <string name="your_surname">Your surname</string>
     <string name="list_of_available_terms_for_reservation">List of available terms for reservation</string>
     <string name="select_a_date_for_term_reservation">Select a date for term reservation</string>
-    <string name="reserve_term_at">Reserve Term at:</string>
+    <string name="reserve_term_at">Reserve Term at</string>
     <string name="headline_select_a_date_for_term_reservation">Headline: Select a date for term reservation</string>
     <string name="sort_alphabetically">Sort alphabetically</string>
     <string name="list_of_available_tutors">List of available tutors</string>

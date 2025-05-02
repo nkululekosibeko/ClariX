@@ -4,62 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pagebkg_main"
     tools:context=".activities.TeacherTermsView">
 
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="Terms Calendar"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addTermButton"
-        android:layout_width="0dp"
-        android:layout_height="67dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="48dp"
-        android:text="Add New Term"
-        android:contentDescription="Button to add new term"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="0dp"
-        android:layout_height="206dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="List of Terms"
-        app:layout_constraintBottom_toTopOf="@+id/addTermButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
+    <!-- Page Header -->
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView5"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="100dp"
-        android:text="My terms at:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:layout_marginTop="50dp"
         android:contentDescription="Header: My Terms At"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="My terms at"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/teal_blue"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- List Container -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="400dp"
+        android:layout_height="650dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/addTermButton">
+
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/container_background"
+            android:contentDescription="Terms Calendar" />
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/container_background"
+            android:contentDescription="List of Terms" />
+    </LinearLayout>
+
+    <!-- Add Term Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addTermButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/button_background"
+        android:contentDescription="Button to add new term"
+        android:text="Add New Term"
+        android:textColor="@color/beige"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

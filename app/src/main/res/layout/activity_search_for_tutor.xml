@@ -4,87 +4,90 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pagebkg_main"
     tools:context=".activities.TutorBrowserView">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="64dp"
-        android:text="@string/search_for_tutor"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="Search for tutor header"
-        tools:ignore="HardcodedText" />
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="556dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="48dp"
-        android:orientation="horizontal"
+        android:id="@+id/mainContainer"
+        android:layout_width="435dp"
+        android:layout_height="950dp"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:background="@drawable/container_background"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/list_of_available_tutors">
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- Header -->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/search_for_tutor"
+            android:text="@string/search_for_tutor"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textAlignment="center"
+            android:textColor="@color/teal_blue"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <!-- Row with Button + 3 Sort ImageButtons -->
+        <LinearLayout
+            android:id="@+id/filterSortRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/subject_button"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1.6"
+                android:text="@string/subjects"
+                android:contentDescription="@string/filter_tutors_by_subjects" />
+
+            <ImageButton
+                android:id="@+id/sortAlphabetically"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.6"
+                android:contentDescription="@string/sort_alphabetically"
+                app:srcCompat="@mipmap/alphabet"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <ImageButton
+                android:id="@+id/sortByPrice"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.6"
+                android:contentDescription="@string/sort_by_price"
+                app:srcCompat="@mipmap/money"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+
+            <ImageButton
+                android:id="@+id/sortByRating"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="0.6"
+                android:contentDescription="@string/sort_by_rating"
+                app:srcCompat="@mipmap/rate"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+        </LinearLayout>
+
+        <!-- ListView -->
         <ListView
             android:id="@+id/tutorListView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/container_border"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"
+            android:contentDescription="@string/list_of_available_tutors" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/subject_button"
-        android:layout_width="151dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/subjects"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/sortAlphabetically"
-        app:layout_constraintStart_toStartOf="parent"
-        android:contentDescription="@string/filter_tutors_by_subjects" />
-
-    <ImageButton
-        android:id="@+id/sortAlphabetically"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/sort_alphabetically"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/sortByPrice"
-        app:srcCompat="@mipmap/alphabet" />
-
-    <ImageButton
-        android:id="@+id/sortByRating"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/sort_by_rating"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/rate" />
-
-    <ImageButton
-        android:id="@+id/sortByPrice"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/sort_by_price"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toStartOf="@+id/sortByRating"
-        app:srcCompat="@mipmap/money" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
