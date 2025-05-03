@@ -21,26 +21,27 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_welcome);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.Welcome), (v, insets) -> {
+
+        // ✅ Fix: Use the correct ID and call after setContentView
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.welcome_layout), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // Button Initialisation
+        // Initialize buttons
         Sign_In = findViewById(R.id.wlcm_signin_button);
         Sign_Up = findViewById(R.id.wlcm_signup_button);
 
-        // Button Listeners
-        Sign_Up.setOnClickListener(v -> {
+        // Set listeners
+        Sign_In.setOnClickListener(v -> {
             Intent intent = new Intent(Welcome.this, LoginView.class);
             startActivity(intent);
         });
 
-        Sign_In.setOnClickListener(v -> {
+        Sign_Up.setOnClickListener(v -> {
             Intent intent = new Intent(Welcome.this, RegisterView.class);
             startActivity(intent);
         });
-
     }
 }

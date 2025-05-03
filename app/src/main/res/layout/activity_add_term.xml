@@ -21,7 +21,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/container_border"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="24dp">
@@ -37,7 +36,6 @@
                 android:textColor="@color/teal_blue"
                 android:textSize="36sp"
                 android:textStyle="bold" />
-
 
             <CalendarView
                 android:id="@+id/calendarView"
@@ -57,6 +55,7 @@
                 android:hint="@string/date_yyyy_mm_dd"
                 android:inputType="date"
                 android:padding="8dp"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textColorHint="#3E2723" />
 
@@ -70,8 +69,9 @@
                 android:hint="@string/time_hh_mm"
                 android:inputType="time"
                 android:padding="8dp"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textColorHint="#263238" />
+                android:textColorHint="@color/beige" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/linkEditText"
@@ -83,8 +83,9 @@
                 android:hint="@string/meeting_link"
                 android:inputType="textUri"
                 android:padding="8dp"
+                android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textColorHint="#3E2723" />
+                android:textColorHint="#B2C2D9" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/addTermButton"

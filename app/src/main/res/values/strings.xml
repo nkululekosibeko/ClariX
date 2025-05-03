@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ClariX</string>
     <string name="welcome_txt">
-    Welcome to Clarix — your space for smarter, peer-driven learning.\nWe’re glad to have you on this journey!
+    This is a space for smarter, peer-driven learning.\nWe’re glad to have you on this journey!
     </string>
 
     <string name="hey_welcome_to_your_dashboard">Hey, Welcome to your Dashboard</string>
@@ -39,7 +39,7 @@
     <string name="select_date_on_calendar">Select date on calendar</string>
     <string name="date_yyyy_mm_dd">Date: YYYY-MM-DD</string>
     <string name="meeting_link">Meeting link</string>
-    <string name="add_new_term">Add new term</string>
+    <string name="add_new_term">Add New Term</string>
     <string name="header_add_new_term">Header: Add new term</string>
     <string name="time_hh_mm">Time: HH:MM</string>
     <string name="list_of_meetings">List of meetings</string>

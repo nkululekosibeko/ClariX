@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/pagebkg_main"
+    android:background="@drawable/pagebkg"
     tools:context=".activities.RegisterView">
 
 
