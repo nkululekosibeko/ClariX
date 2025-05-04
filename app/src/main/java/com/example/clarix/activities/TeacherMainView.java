@@ -10,11 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.clarix.R;
 import com.example.clarix.data.classes.TeacherClass;
@@ -51,7 +47,7 @@ public class TeacherMainView extends AppCompatActivity {
 
         btnLogout.setOnClickListener(v -> {
             manager.signOut();
-            Intent intent = new Intent(getApplicationContext(), LoginView.class);
+            Intent intent = new Intent(getApplicationContext(), LogIn.class);
             startActivity(intent);
             finish();
         });
@@ -91,7 +87,7 @@ public class TeacherMainView extends AppCompatActivity {
 
 
         if (user == null) {
-            Intent intent = new Intent(getApplicationContext(), LoginView.class);
+            Intent intent = new Intent(getApplicationContext(), LogIn.class);
             startActivity(intent);
             finish();
         }
@@ -108,7 +104,7 @@ public class TeacherMainView extends AppCompatActivity {
 
 
             } else {
-                Intent intent = new Intent(getApplicationContext(), LoginView.class);
+                Intent intent = new Intent(getApplicationContext(), LogIn.class);
                 startActivity(intent);
                 finish();
             }

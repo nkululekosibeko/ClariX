@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pagebkg"
-    tools:context=".activities.LoginView">
+    tools:context=".activities.LogIn">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
 
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/email"
+                android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
@@ -50,7 +50,7 @@
                 android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/password"
+                android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"

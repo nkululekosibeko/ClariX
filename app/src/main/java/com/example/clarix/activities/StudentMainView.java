@@ -10,17 +10,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.clarix.activities.LoginView;
-import com.example.clarix.activities.MeetingsView;
-import com.example.clarix.activities.SelectProfilePictureView;
-import com.example.clarix.activities.TutorBrowserView;
 import com.example.clarix.database_handlers.FirebaseManager;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseUser;
 
 import com.example.clarix.R;
-import com.example.clarix.database_handlers.FirebaseManager;
-
 
 
 public class StudentMainView extends AppCompatActivity {
@@ -46,7 +40,7 @@ public class StudentMainView extends AppCompatActivity {
 
 
         if (user == null) {
-            Intent intent = new Intent(getApplicationContext(), LoginView.class);
+            Intent intent = new Intent(getApplicationContext(), LogIn.class);
             startActivity(intent);
             finish();
         }
@@ -57,7 +51,7 @@ public class StudentMainView extends AppCompatActivity {
         });
         btnLogout.setOnClickListener(v -> {
             manager.signOut();
-            Intent intent = new Intent(getApplicationContext(), LoginView.class);
+            Intent intent = new Intent(getApplicationContext(), LogIn.class);
             startActivity(intent);
             finish();
         });
@@ -74,7 +68,7 @@ public class StudentMainView extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (user == null) {
-            Intent intent = new Intent(getApplicationContext(), LoginView.class);
+            Intent intent = new Intent(getApplicationContext(), LogIn.class);
             startActivity(intent);
             finish();
         }

@@ -51,10 +51,10 @@
             android:name=".activities.StudentMainView"
             android:exported="false" />
         <activity
-            android:name=".activities.RegisterView"
+            android:name=".activities.SignUp"
             android:exported="false" />
         <activity
-            android:name=".activities.LoginView"
+            android:name=".activities.LogIn"
             android:exported="true"/>
         <activity
             android:name=".activities.TeacherMainView"

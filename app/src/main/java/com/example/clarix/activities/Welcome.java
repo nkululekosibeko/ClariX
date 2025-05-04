@@ -35,12 +35,12 @@ public class Welcome extends AppCompatActivity {
 
         // Set listeners
         Sign_In.setOnClickListener(v -> {
-            Intent intent = new Intent(Welcome.this, LoginView.class);
+            Intent intent = new Intent(Welcome.this, LogIn.class);
             startActivity(intent);
         });
 
         Sign_Up.setOnClickListener(v -> {
-            Intent intent = new Intent(Welcome.this, RegisterView.class);
+            Intent intent = new Intent(Welcome.this, SignUp.class);
             startActivity(intent);
         });
     }

@@ -23,8 +23,8 @@ import java.util.Map;
 import java.util.Objects;
 
 import com.example.clarix.R;
-import com.example.clarix.activities.LoginView;
-import com.example.clarix.activities.RegisterView;
+import com.example.clarix.activities.LogIn;
+import com.example.clarix.activities.SignUp;
 
 import com.example.clarix.data.classes.Meeting;
 import com.example.clarix.data.classes.TeacherClass;
@@ -106,9 +106,9 @@ public class FirebaseManager {
                                                         .addOnCompleteListener(task1 -> {
                                                             if (task1.isSuccessful()) {
                                                                 Toast.makeText(context, "Account created and user information added to Firestore.", Toast.LENGTH_SHORT).show();
-                                                                Intent intent = new Intent(context, LoginView.class);
+                                                                Intent intent = new Intent(context, LogIn.class);
                                                                 context.startActivity(intent);
-                                                                ((RegisterView) context).finish();
+                                                                ((SignUp) context).finish();
                                                             } else {
                                                                 Toast.makeText(context, "Account created, but failed to add teacher information to Firestore.", Toast.LENGTH_SHORT).show();
                                                             }
@@ -116,9 +116,9 @@ public class FirebaseManager {
                                             } else {
                                                 // Student registration
                                                 Toast.makeText(context, "Account created and user information added to Firestore.", Toast.LENGTH_SHORT).show();
-                                                Intent intent = new Intent(context, LoginView.class);
+                                                Intent intent = new Intent(context, LogIn.class);
                                                 context.startActivity(intent);
-                                                ((RegisterView) context).finish();
+                                                ((SignUp) context).finish();
                                             }
                                         } else {
                                             Toast.makeText(context, "Account created, but failed to add user information to Firestore.", Toast.LENGTH_SHORT).show();

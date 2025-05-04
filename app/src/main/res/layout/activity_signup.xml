@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/pagebkg"
-    tools:context=".activities.RegisterView">
+    android:background="@drawable/pagebkg_main"
+    tools:context=".activities.SignUp">
 
 
     <androidx.cardview.widget.CardView
@@ -41,20 +41,20 @@
                 android:textStyle="bold" />
 
             <Switch
-                android:id="@+id/userTypeSwitch"
+                android:id="@+id/signup_user_type_switch"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="15dp"
-                android:minHeight="48dp"
-                android:text="@string/register_as_teacher"
                 android:contentDescription="@string/toggle_to_register_as_a_teacher_or_student"
-                android:textSize="16sp"
+                android:minHeight="48dp"
+                android:padding="8dp"
+                android:text="@string/register_as_teacher"
                 android:textColor="@color/black"
-                android:padding="8dp" />
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/email"
+                android:id="@+id/signup_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
@@ -65,7 +65,7 @@
                 android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/password"
+                android:id="@+id/signup_password"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
@@ -77,7 +77,7 @@
                 android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/name"
+                android:id="@+id/signup_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
@@ -88,7 +88,7 @@
                 android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/surname"
+                android:id="@+id/signup_surname"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
@@ -103,7 +103,7 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="45dp"
                 android:background="@drawable/button_background"
                 android:text="Sign Up"
                 android:textColor="@color/beige"
@@ -116,7 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:padding="8dp"
                 android:text="Already an user? Login"
                 android:textColor="@drawable/text_color_selector"
