@@ -41,7 +41,7 @@ public class TeacherMainView extends AppCompatActivity {
         profilePictureView = findViewById(R.id.profilePictureTeacher);
 
         profilePictureView.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SelectProfilePictureView.class);
+            Intent intent = new Intent(getApplicationContext(), ManageProfileActivity.class);
             startActivity(intent);
         });
 

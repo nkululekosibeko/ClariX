@@ -17,6 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -143,6 +144,24 @@ public class FirebaseManager {
 
     }
 
+    public void updateTeacherProfile(String uid, String name, String phone, String bio, String subject, int rate, int currentImageResource) {
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("name", name);
+        updateMap.put("phoneNumber", phone);
+        updateMap.put("bio", bio);
+        updateMap.put("subjects", Arrays.asList(subject));
+        updateMap.put("price", rate);
+
+        db.collection("users").document(uid)
+                .set(updateMap, SetOptions.merge())
+                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Profile updated successfully", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> {
+                    e.printStackTrace();
+                    Toast.makeText(context, "Error updating profile", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
     public void getMeetingsForCurrentUser(OnSuccessListener<ArrayList<Meeting>> successListener, OnFailureListener failureListener) {
         ArrayList<Meeting> meetings_objects = new ArrayList<>();
 
@@ -196,7 +215,7 @@ public class FirebaseManager {
         db.collection("subjects")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for(QueryDocumentSnapshot document : queryDocumentSnapshots){
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         String subject = document.getId();
                         subjects.add(subject);
                     }
@@ -206,7 +225,6 @@ public class FirebaseManager {
 
     public void getTeacherList(final TeacherListCallback callback) {
         ArrayList<TeacherClass> teachers = new ArrayList<>();
-        // Handle failure
         db.collection("users")
                 .whereEqualTo("userType", "teacher")
                 .get()
@@ -216,14 +234,14 @@ public class FirebaseManager {
                         String email = document.getString("email");
                         String name = document.getString("name");
                         String surname = document.getString("surname");
+                        String phoneNumber = document.getString("phoneNumber");
+                        String bio = document.getString("bio");
                         List<String> subjects = (List<String>) document.get("subjects");
 
-                        // Retrieve the "rates" field as a map of strings to numbers
                         Map<String, Object> ratesMap = (Map<String, Object>) document.get("ratings");
                         List<Integer> rates = new ArrayList<>();
                         if (ratesMap != null) {
                             for (Object rate : ratesMap.values()) {
-                                // Assuming rates are stored as numbers
                                 if (rate instanceof Number) {
                                     rates.add(((Number) rate).intValue());
                                 }
@@ -232,13 +250,15 @@ public class FirebaseManager {
 
                         int price = Objects.requireNonNull(document.getLong("price")).intValue();
                         int picture = Objects.requireNonNull(document.getLong("picture")).intValue();
-                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture);
+
+                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture, phoneNumber, bio);
                         teachers.add(teacher);
                     }
                     callback.onTeacherListReceived(teachers);
                 })
                 .addOnFailureListener(Throwable::printStackTrace);
     }
+
 
 
     public void updateSubjects(String userID, List<String> newSubjects, Context context) {
@@ -328,12 +348,15 @@ public class FirebaseManager {
                 .document(userId)
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists() && documentSnapshot.getString("userType").equals("teacher")) {
+                    if (documentSnapshot.exists() && "teacher".equals(documentSnapshot.getString("userType"))) {
                         String id = documentSnapshot.getId();
                         String email = documentSnapshot.getString("email");
                         String name = documentSnapshot.getString("name");
                         String surname = documentSnapshot.getString("surname");
+                        String phoneNumber = documentSnapshot.getString("phoneNumber");
+                        String bio = documentSnapshot.getString("bio");
                         List<String> subjects = (List<String>) documentSnapshot.get("subjects");
+
                         Map<String, Object> ratesMap = (Map<String, Object>) documentSnapshot.get("ratings");
                         List<Integer> rates = new ArrayList<>();
                         if (ratesMap != null) {
@@ -346,7 +369,8 @@ public class FirebaseManager {
 
                         int price = Objects.requireNonNull(documentSnapshot.getLong("price")).intValue();
                         int picture = Objects.requireNonNull(documentSnapshot.getLong("picture")).intValue();
-                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture);
+
+                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture, phoneNumber, bio);
                         callback.onTeacherReceived(teacher);
                     } else {
                         callback.onTeacherReceived(null);
@@ -357,6 +381,7 @@ public class FirebaseManager {
                     callback.onTeacherReceived(null);
                 });
     }
+
 
     public void getImage(String userID, OnSuccessListener<Integer> successListener, OnFailureListener failureListener) {
         db.collection("users").document(userID).get()

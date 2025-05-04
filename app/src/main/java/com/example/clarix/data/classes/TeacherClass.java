@@ -8,12 +8,15 @@ public class TeacherClass implements Serializable {
     private String email;
     private String name;
     private String surname;
+    private String phoneNumber;
+    private String bio;
     private int picture;
     private List<String> subjects;
     private int price;
     private final List<Integer> rates;
 
-    public TeacherClass(String id, String email, String name, String surname, List<String> subjects, List<Integer> rates, int price,int picture) {
+    public TeacherClass(String id, String email, String name, String surname, List<String> subjects,
+                        List<Integer> rates, int price, int picture, String phoneNumber, String bio) {
         this.id = id;
         this.email = email;
         this.name = name;
@@ -22,21 +25,26 @@ public class TeacherClass implements Serializable {
         this.rates = rates;
         this.price = price;
         this.picture = picture;
+        this.phoneNumber = phoneNumber;
+        this.bio = bio;
     }
 
-    public String getStringPrice() {
-        return Integer.toString(price);
-    }
     public String getId() {
         return id;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getName() {
         return name;
     }
+
     public String getSurname() {
         return surname;
     }
+
     public List<String> getSubjects() {
         return subjects;
     }
@@ -45,8 +53,20 @@ public class TeacherClass implements Serializable {
         return price;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public int getPicture() {
+        return picture;
+    }
+
     public float getRate() {
-        if (rates.size() == 0)
+        if (rates == null || rates.isEmpty())
             return 0;
         float sum = 0;
         for (int rate : rates) {
@@ -59,9 +79,7 @@ public class TeacherClass implements Serializable {
         return String.format("%.2f", getRate());
     }
 
-    public int getPicture() {
-        return picture;
+    public String getStringPrice() {
+        return Integer.toString(price);
     }
-
-
 }
