@@ -24,6 +24,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import android.net.Uri;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+
 import com.example.clarix.R;
 import com.example.clarix.activities.LogIn;
 import com.example.clarix.activities.SignUp;
@@ -144,9 +152,10 @@ public class FirebaseManager {
 
     }
 
-    public void updateTeacherProfile(String uid, String name, String phone, String bio, String subject, int rate, int currentImageResource) {
+    public void updateTeacherProfile(String uid, String name, String surname, String phone, String bio, String subject, int rate) {
         Map<String, Object> updateMap = new HashMap<>();
         updateMap.put("name", name);
+        updateMap.put("surname", surname);
         updateMap.put("phoneNumber", phone);
         updateMap.put("bio", bio);
         updateMap.put("subjects", Arrays.asList(subject));
@@ -154,10 +163,54 @@ public class FirebaseManager {
 
         db.collection("users").document(uid)
                 .set(updateMap, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Profile updated successfully", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(aVoid ->
+                        Toast.makeText(context, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                )
                 .addOnFailureListener(e -> {
                     e.printStackTrace();
                     Toast.makeText(context, "Error updating profile", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    public void uploadProfileImage(String userId, Uri imageUri, OnSuccessListener<String> callback) {
+        if (imageUri == null || userId == null || userId.isEmpty()) {
+            Log.e(TAG, "uploadProfileImage: Invalid input - URI or User ID is null/empty");
+            Toast.makeText(context, "Invalid image or user ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        StorageReference storageRef = FirebaseStorage.getInstance()
+                .getReference("profile_images/" + userId + ".jpg");
+
+        Log.d(TAG, "Starting upload to Firebase Storage...");
+
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    Log.d(TAG, "Upload successful. Fetching download URL...");
+                    storageRef.getDownloadUrl()
+                            .addOnSuccessListener(uri -> {
+                                String downloadUrl = uri.toString();
+                                Log.d(TAG, "Download URL received: " + downloadUrl);
+
+                                db.collection("users").document(userId)
+                                        .update("profileImageUrl", downloadUrl)
+                                        .addOnSuccessListener(aVoid -> {
+                                            Log.d(TAG, "Image URL saved to Firestore.");
+                                            callback.onSuccess(downloadUrl);
+                                        })
+                                        .addOnFailureListener(e -> {
+                                            Log.e(TAG, "Failed to save image URL to Firestore", e);
+                                            Toast.makeText(context, "Failed to save image URL", Toast.LENGTH_SHORT).show();
+                                        });
+                            })
+                            .addOnFailureListener(e -> {
+                                Log.e(TAG, "Failed to retrieve download URL", e);
+                                Toast.makeText(context, "Image URL retrieval failed", Toast.LENGTH_SHORT).show();
+                            });
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Image upload failed", e);
+                    Toast.makeText(context, "Image upload failed", Toast.LENGTH_SHORT).show();
                 });
     }
 

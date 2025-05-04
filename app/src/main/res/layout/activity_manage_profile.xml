@@ -25,26 +25,25 @@
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:src="@drawable/annonym"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:contentDescription="Profile Image"
             android:background="@drawable/circle_background"
             android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/edit_profile_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Profile"
-            android:textSize="28sp"
-            android:textColor="@color/teal_blue"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
+
 
         <EditText
             android:id="@+id/profile_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name" />
+            android:hint="First Name" />
+
+        <EditText
+            android:id="@+id/profile_surname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Surname"
+            android:layout_marginTop="12dp" />
 
         <TextView
             android:id="@+id/profile_email"

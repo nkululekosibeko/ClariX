@@ -11,10 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.List;
-
+import com.bumptech.glide.Glide;
 import com.example.clarix.R;
 import com.example.clarix.data.classes.TeacherClass;
+
+import java.util.List;
 
 public class TutorListAdapter extends ArrayAdapter<TeacherClass> {
 
@@ -37,8 +38,14 @@ public class TutorListAdapter extends ArrayAdapter<TeacherClass> {
         TextView rateView = convertView.findViewById(R.id.studentName);
 
         if (teacher != null) {
-            int image = teacher.getPicture();
-            imageView.setImageResource(image);
+            // Load profile image with Glide from URL
+            String imageUrl = teacher.getProfileImageUrl();
+            Glide.with(getContext())
+                    .load(imageUrl)
+                    .placeholder(R.drawable.annonym)
+                    .centerCrop()
+                    .into(imageView);
+
             nameView.setText(teacher.getName());
             surnameView.setText(teacher.getSurname());
             priceView.setText(teacher.getStringPrice() + "zł/h");
@@ -48,4 +55,3 @@ public class TutorListAdapter extends ArrayAdapter<TeacherClass> {
         return convertView;
     }
 }
-

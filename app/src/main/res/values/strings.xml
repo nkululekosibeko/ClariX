@@ -63,4 +63,18 @@
     <string name="search_for_tutor">Search for tutor</string>
     <string name="setPrice">set your price</string>
     <string name="addTerm">add new term</string>
+
+    <string-array name="subjects_array">
+        <item>Mathematics</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>Biology</item>
+        <item>English</item>
+        <item>Computer Science</item>
+        <item>Accounting</item>
+        <item>Economics</item>
+        <item>Geography</item>
+        <item>History</item>
+    </string-array>
+
 </resources>

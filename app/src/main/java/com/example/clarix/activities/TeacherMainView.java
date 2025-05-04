@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.clarix.R;
 import com.example.clarix.data.classes.TeacherClass;
 import com.example.clarix.database_handlers.FirebaseManager;
@@ -100,16 +101,23 @@ public class TeacherMainView extends AppCompatActivity {
             if (teacher != null) {
                 teacher_object = teacher;
                 credentials.setText(teacher_object.getName() + " " + teacher_object.getSurname());
-                profilePictureView.setImageResource(teacher_object.getPicture());
 
-
+                String imageUrl = teacher_object.getProfileImageUrl();
+                if (imageUrl != null && !imageUrl.isEmpty()) {
+                    Glide.with(this)
+                            .load(imageUrl)
+                            .placeholder(R.drawable.annonym)
+                            .centerCrop()
+                            .into(profilePictureView);
+                } else {
+                    profilePictureView.setImageResource(R.drawable.annonym);
+                }
             } else {
                 Intent intent = new Intent(getApplicationContext(), LogIn.class);
                 startActivity(intent);
                 finish();
             }
         });
-
-
     }
+
 }
