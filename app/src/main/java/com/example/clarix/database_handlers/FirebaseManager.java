@@ -2,6 +2,7 @@ package com.example.clarix.database_handlers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,6 +32,8 @@ import com.example.clarix.data.classes.TeacherClass;
 import com.example.clarix.data.classes.Term;
 
 public class FirebaseManager {
+
+    private static final String TAG = "FirebaseManager";
 
     private final FirebaseAuth mAuth;
     private final FirebaseFirestore db;
@@ -79,12 +82,14 @@ public class FirebaseManager {
         }
     }
     public void registerUser(String email, String password, String name, String surname, boolean isTeacher) {
+        Log.d(TAG, "Attempting to register user: " + email);
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
-                            // Create a user object with additional details
+                            Log.d(TAG, "User created: " + user.getUid());
+
                             Map<String, Object> userData = new HashMap<>();
                             userData.put("email", email);
                             userData.put("name", name);
@@ -92,45 +97,50 @@ public class FirebaseManager {
                             userData.put("userType", isTeacher ? "teacher" : "student");
                             userData.put("picture", R.drawable.annonym);
 
-                            // Store the user in Firestore
                             db.collection("users").document(user.getUid())
                                     .set(userData, SetOptions.merge())
                                     .addOnCompleteListener(task12 -> {
                                         if (task12.isSuccessful()) {
+                                            Log.d(TAG, "User profile saved to Firestore.");
                                             if (isTeacher) {
                                                 Map<String, Object> teacherData = new HashMap<>();
                                                 teacherData.put("subjects", new ArrayList<>());
                                                 teacherData.put("price", 0);
+
                                                 db.collection("users").document(user.getUid())
                                                         .set(teacherData, SetOptions.merge())
                                                         .addOnCompleteListener(task1 -> {
                                                             if (task1.isSuccessful()) {
-                                                                Toast.makeText(context, "Account created and user information added to Firestore.", Toast.LENGTH_SHORT).show();
-                                                                Intent intent = new Intent(context, LogIn.class);
-                                                                context.startActivity(intent);
+                                                                Log.d(TAG, "Teacher details saved.");
+                                                                Toast.makeText(context, "Account created and user info added.", Toast.LENGTH_SHORT).show();
+                                                                context.startActivity(new Intent(context, LogIn.class));
                                                                 ((SignUp) context).finish();
                                                             } else {
-                                                                Toast.makeText(context, "Account created, but failed to add teacher information to Firestore.", Toast.LENGTH_SHORT).show();
+                                                                Log.e(TAG, "Failed to save teacher info.", task1.getException());
+                                                                Toast.makeText(context, "Failed to save teacher info.", Toast.LENGTH_SHORT).show();
                                                             }
                                                         });
                                             } else {
-                                                // Student registration
-                                                Toast.makeText(context, "Account created and user information added to Firestore.", Toast.LENGTH_SHORT).show();
-                                                Intent intent = new Intent(context, LogIn.class);
-                                                context.startActivity(intent);
+                                                Log.d(TAG, "Student registration completed.");
+                                                Toast.makeText(context, "Account created.", Toast.LENGTH_SHORT).show();
+                                                context.startActivity(new Intent(context, LogIn.class));
                                                 ((SignUp) context).finish();
                                             }
                                         } else {
-                                            Toast.makeText(context, "Account created, but failed to add user information to Firestore.", Toast.LENGTH_SHORT).show();
+                                            Log.e(TAG, "Failed to write user to Firestore.", task12.getException());
+                                            Toast.makeText(context, "Account created, but Firestore failed.", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                         } else {
+                            Log.e(TAG, "User object is null after sign-up.");
                             Toast.makeText(context, "User is null.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Toast.makeText(context, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Firebase sign-up failed", task.getException());
+                        Toast.makeText(context, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+
     }
 
     public void getMeetingsForCurrentUser(OnSuccessListener<ArrayList<Meeting>> successListener, OnFailureListener failureListener) {
