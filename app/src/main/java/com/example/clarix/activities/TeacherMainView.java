@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class TeacherMainView extends AppCompatActivity {
 
     Button btnLogout;
-    ImageButton btnTeacherMeetings, btnTerms, btnTeacherSubjects, btnPrice;
+    ImageButton btnTeacherMeetings, btnTerms, btnTeacherSubjects, viewScheduleBtn;
     TextView credentials;
     FirebaseUser user;
     private ImageView profilePictureView;
@@ -36,7 +36,7 @@ public class TeacherMainView extends AppCompatActivity {
         btnTeacherMeetings = findViewById(R.id.btnTeacherMeetings);
         btnTerms = findViewById(R.id.btnTeacherTerms);
         btnTeacherSubjects = findViewById(R.id.btnSubjects);
-        btnPrice = findViewById(R.id.btnPrice);
+        viewScheduleBtn = findViewById(R.id.btnViewSchedule);
         credentials = findViewById(R.id.credentials);
         user = manager.getCurrentUser();
         profilePictureView = findViewById(R.id.profilePictureTeacher);
@@ -45,6 +45,7 @@ public class TeacherMainView extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), ManageProfileActivity.class);
             startActivity(intent);
         });
+
 
         btnLogout.setOnClickListener(v -> {
             manager.signOut();
@@ -57,41 +58,17 @@ public class TeacherMainView extends AppCompatActivity {
             startActivity(intent);
         });
         btnTerms.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), TeacherTermsView.class);
+            Intent intent = new Intent(getApplicationContext(), SetAvailabilityActivity.class);
             startActivity(intent);
         });
         btnTeacherSubjects.setOnClickListener(v -> {
             Intent intent = new Intent(getApplicationContext(), SubjectView.class);
             startActivity(intent);
         });
-        btnPrice.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(TeacherMainView.this);
-            builder.setTitle("Enter Price");
-
-            final EditText input = new EditText(TeacherMainView.this);
-            input.setInputType(InputType.TYPE_CLASS_NUMBER);
-            builder.setView(input);
-
-            builder.setPositiveButton("OK", (dialog, which) -> {
-                String enteredValue = input.getText().toString();
-                try {
-                    int priceValue = Integer.parseInt(enteredValue);
-                    manager.updatePrice(manager.getCurrentUser().getUid(), priceValue);
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
-            builder.show();
-        });
-
-
-        if (user == null) {
-            Intent intent = new Intent(getApplicationContext(), LogIn.class);
+        viewScheduleBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(TeacherMainView.this, ViewScheduleActivity.class);
             startActivity(intent);
-            finish();
-        }
+            });
 
     }
     @Override

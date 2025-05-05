@@ -36,7 +36,6 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <!-- Profile Picture -->
-        <!-- Profile Picture -->
         <ImageView
             android:id="@+id/profilePictureTeacher"
             android:layout_width="170dp"
@@ -49,7 +48,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
-
 
         <!-- Credentials -->
         <TextView
@@ -91,12 +89,12 @@
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_marginStart="24dp"
-                android:contentDescription="@string/addTerm"
+                android:contentDescription="Set Schedule"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:srcCompat="@mipmap/terms" />
         </LinearLayout>
 
-        <!-- Row 2: Subjects + Price -->
+        <!-- Row 2: Subjects + View Schedule -->
         <LinearLayout
             android:id="@+id/row2"
             android:layout_width="match_parent"
@@ -117,13 +115,13 @@
                 app:srcCompat="@mipmap/subjects" />
 
             <ImageButton
-                android:id="@+id/btnPrice"
+                android:id="@+id/btnViewSchedule"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
                 android:layout_marginStart="24dp"
-                android:contentDescription="@string/setPrice"
+                android:contentDescription="View Schedule"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                app:srcCompat="@mipmap/price" />
+                app:srcCompat="@mipmap/subjects" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -457,5 +457,25 @@ public class FirebaseManager {
                 });
     }
 
+    public void addAvailabilitySlot(String tutorId, Timestamp startTime, Timestamp endTime) {
+        Map<String, Object> availability = new HashMap<>();
+        availability.put("tutorId", tutorId);
+        availability.put("startTime", startTime);
+        availability.put("endTime", endTime);
+        availability.put("isBooked", false); // Optional flag for booking status
+
+        db.collection("availability")
+                .add(availability)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("FirebaseManager", "Availability added with ID: " + documentReference.getId());
+                    Toast.makeText(context, "Availability added successfully", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    e.printStackTrace();
+                    Toast.makeText(context, "Failed to add availability", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
 }
 
