@@ -15,14 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clarix.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.*;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.example.clarix.data_adapters.AvailabilityAdapter;
 
 public class ViewScheduleActivity extends AppCompatActivity {
 
@@ -31,14 +30,13 @@ public class ViewScheduleActivity extends AppCompatActivity {
     private FirebaseUser user;
     private List<Map<String, Object>> scheduleList = new ArrayList<>();
     private List<String> docKeys = new ArrayList<>();
-    private AvailabilityAdapter adapter;
+    private com.example.clarix.data_adapters.AvailabilityAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_view_schedule);
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -51,7 +49,7 @@ public class ViewScheduleActivity extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
-        adapter = new AvailabilityAdapter(scheduleList, docKeys, this::deleteAvailability);
+        adapter = new com.example.clarix.data_adapters.AvailabilityAdapter(scheduleList, docKeys, this::deleteAvailability);
         recyclerView.setAdapter(adapter);
 
         loadAvailability();
@@ -62,9 +60,9 @@ public class ViewScheduleActivity extends AppCompatActivity {
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        db.collection("availability")
-                .whereEqualTo("tutorId", user.getUid())
+        db.collection("users")
+                .document(user.getUid())
+                .collection("availability")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     scheduleList.clear();
@@ -82,7 +80,9 @@ public class ViewScheduleActivity extends AppCompatActivity {
     }
 
     private void deleteAvailability(String docId) {
-        db.collection("availability")
+        db.collection("users")
+                .document(user.getUid())
+                .collection("availability")
                 .document(docId)
                 .delete()
                 .addOnSuccessListener(aVoid -> {

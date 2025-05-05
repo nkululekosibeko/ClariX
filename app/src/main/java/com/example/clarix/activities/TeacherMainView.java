@@ -54,47 +54,47 @@ public class TeacherMainView extends AppCompatActivity {
             finish();
         });
         btnTeacherMeetings.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), MeetingsView.class);
+            Intent intent = new Intent(getApplicationContext(), SetAvailability.class);
             startActivity(intent);
         });
         btnTerms.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SetAvailabilityActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SetAvailability.class);
             startActivity(intent);
         });
         btnTeacherSubjects.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SubjectView.class);
+            Intent intent = new Intent(getApplicationContext(), SetAvailability.class);
             startActivity(intent);
         });
-        viewScheduleBtn.setOnClickListener(view -> {
-            Intent intent = new Intent(TeacherMainView.this, ViewScheduleActivity.class);
+        viewScheduleBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(getApplicationContext(), ViewScheduleActivity.class);
             startActivity(intent);
-            });
-
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
-        manager.getTeacherById(manager.getCurrentUser().getUid(), teacher -> {
-            if (teacher != null) {
-                teacher_object = teacher;
-                credentials.setText(teacher_object.getName() + " " + teacher_object.getSurname());
-
-                String imageUrl = teacher_object.getProfileImageUrl();
-                if (imageUrl != null && !imageUrl.isEmpty()) {
-                    Glide.with(this)
-                            .load(imageUrl)
-                            .placeholder(R.drawable.annonym)
-                            .centerCrop()
-                            .into(profilePictureView);
-                } else {
-                    profilePictureView.setImageResource(R.drawable.annonym);
-                }
-            } else {
-                Intent intent = new Intent(getApplicationContext(), LogIn.class);
-                startActivity(intent);
-                finish();
-            }
         });
+
     }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        manager.getTeacherById(manager.getCurrentUser().getUid(), teacher -> {
+//            if (teacher != null) {
+//                teacher_object = teacher;
+//                credentials.setText("Welcome " + teacher_object.getName() + " " + teacher_object.getSurname());
+//
+//                String imageUrl = teacher_object.getProfileImageUrl();
+//                if (imageUrl != null && !imageUrl.isEmpty()) {
+//                    Glide.with(this)
+//                            .load(imageUrl)
+//                            .placeholder(R.drawable.annonym)
+//                            .centerCrop()
+//                            .into(profilePictureView);
+//                } else {
+//                    profilePictureView.setImageResource(R.drawable.annonym);
+//                }
+//            } else {
+//                Intent intent = new Intent(getApplicationContext(), LogIn.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
+//    }
 
 }

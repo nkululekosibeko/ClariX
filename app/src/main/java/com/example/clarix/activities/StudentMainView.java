@@ -46,7 +46,7 @@ public class StudentMainView extends AppCompatActivity {
         }
 
         profilePic.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), SelectProfilePictureView.class);
+            Intent intent = new Intent(getApplicationContext(), ViewScheduleActivity.class);
             startActivity(intent);
         });
         btnLogout.setOnClickListener(v -> {
@@ -57,11 +57,11 @@ public class StudentMainView extends AppCompatActivity {
         });
 
         btnMeetings.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), MeetingsView.class);
+            Intent intent = new Intent(getApplicationContext(), ViewScheduleActivity.class);
             startActivity(intent);
         });
         btnSearch.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), TutorBrowserView.class);
+            Intent intent = new Intent(getApplicationContext(), ViewScheduleActivity.class);
             startActivity(intent);
         });}
     @Override
@@ -75,18 +75,18 @@ public class StudentMainView extends AppCompatActivity {
         manager.getUserData("name", data -> name.setText(data));
 
         manager.getUserData("surname", data -> name.setText(name.getText() + " " + data));
-
-        manager.getImage(manager.getCurrentUser().getUid(),
-                picture -> {
-                    if (picture == 0) {
-                        profilePic.setImageResource(R.drawable.annonym);
-                    } else {
-                        profilePic.setImageResource(picture);
-
-                    }
-                },
-                e -> {
-                });
+//
+//        manager.getImage(manager.getCurrentUser().getUid(),
+//                picture -> {
+//                    if (picture == 0) {
+//                        profilePic.setImageResource(R.drawable.annonym);
+//                    } else {
+//                        profilePic.setImageResource(picture);
+//
+//                    }
+//                },
+//                e -> {
+//                });
 
 
     }

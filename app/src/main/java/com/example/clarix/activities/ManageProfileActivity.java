@@ -96,20 +96,20 @@ public class ManageProfileActivity extends AppCompatActivity {
             emailView.setText(user.getEmail());
 
 
-            manager.getTeacherById(user.getUid(), teacher -> {
-                if (teacher != null) {
-                    nameField.setText(teacher.getName());
-                    surnameField.setText(teacher.getSurname());
-                    phoneField.setText(teacher.getPhoneNumber());
-                    bioField.setText(teacher.getBio());
-                    rateField.setText(String.valueOf(teacher.getPrice()));
-
-                    if (teacher.getSubjects() != null && !teacher.getSubjects().isEmpty()) {
-                        int index = subjects.indexOf(teacher.getSubjects().get(0));
-                        if (index >= 0) subjectSpinner.setSelection(index);
-                    }
-                }
-            });
+//            manager.getTeacherById(user.getUid(), teacher -> {
+//                if (teacher != null) {
+//                    nameField.setText(teacher.getName());
+//                    surnameField.setText(teacher.getSurname());
+//                    phoneField.setText(teacher.getPhoneNumber());
+//                    bioField.setText(teacher.getBio());
+//                    rateField.setText(String.valueOf(teacher.getPrice()));
+//
+//                    if (teacher.getSubjects() != null && !teacher.getSubjects().isEmpty()) {
+//                        int index = subjects.indexOf(teacher.getSubjects().get(0));
+//                        if (index >= 0) subjectSpinner.setSelection(index);
+//                    }
+//                }
+//            });
         }
 
         profileImage.setOnClickListener(v -> {

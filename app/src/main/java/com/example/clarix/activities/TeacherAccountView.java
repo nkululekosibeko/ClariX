@@ -50,7 +50,7 @@ public class TeacherAccountView extends AppCompatActivity {
         ratingBar.setOnRatingBarChangeListener((ratingBar1, rating, fromUser) -> {
             if (fromUser) {
                 int integerRating = Math.round(rating);
-                manager.addRate(teacher.getId(), manager.getCurrentUser().getUid(), integerRating);
+//                manager.addRate(teacher.getId(), manager.getCurrentUser().getUid(), integerRating);
             }
         });
 
@@ -61,10 +61,10 @@ public class TeacherAccountView extends AppCompatActivity {
             if ((i + 1) % 3 == 0 && i < subjects.size() - 1) subjectListView.append("\n");
         }
 
-        reserveTermButton.setOnClickListener(view -> {
-            Intent intent = new Intent(TeacherAccountView.this, ReserveTermView.class);
-            intent.putExtra("teacher", teacher);
-            startActivity(intent);
-        });
+//        reserveTermButton.setOnClickListener(view -> {
+//            Intent intent = new Intent(TeacherAccountView.this, ReserveTermView.class);
+//            intent.putExtra("teacher", teacher);
+//            startActivity(intent);
+//        });
     }
 }

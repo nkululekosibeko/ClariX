@@ -4,7 +4,6 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pagebkg_main"
     android:padding="24dp">
 
     <!-- Title Text -->
@@ -17,7 +16,6 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:contentDescription="Screen title showing 'Your Schedule'"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -27,7 +25,6 @@
         android:id="@+id/availabilityRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="List of your scheduled availability slots"
         app:layout_constraintTop_toBottomOf="@id/title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

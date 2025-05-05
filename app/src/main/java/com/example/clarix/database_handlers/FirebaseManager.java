@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.clarix.data.classes.HelperClass;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.Timestamp;
@@ -48,47 +49,20 @@ public class FirebaseManager {
     private final FirebaseFirestore db;
     private final Context context;
 
-    private final FirebaseUser user;
-
     public FirebaseManager(Context context) {
         this.context = context;
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-        user = mAuth.getCurrentUser();
     }
-
-
-
     public void signOut() {
+        Log.d(TAG, "signOut: Signing out user");
         mAuth.signOut();
     }
 
     public FirebaseUser getCurrentUser() {
-        return user;
-    }
-
-
-    public void getUserData(String fieldName, OnDataRetrievedListener listener) {
         FirebaseUser user = mAuth.getCurrentUser();
-
-        if (user != null) {
-            DocumentReference userRef = db.collection("users").document(user.getUid());
-            userRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        String data = document.getString(fieldName);
-                        listener.onDataRetrieved(data != null ? data : "");
-                    } else {
-                        listener.onDataRetrieved("");
-                    }
-                } else {
-                    listener.onDataRetrieved("");
-                }
-            });
-        } else {
-            listener.onDataRetrieved("");
-        }
+        Log.d(TAG, "getCurrentUser: " + (user != null ? user.getUid() : "null"));
+        return user;
     }
     public void registerUser(String email, String password, String name, String surname, boolean isTeacher) {
         Log.d(TAG, "Attempting to register user: " + email);
@@ -215,266 +189,293 @@ public class FirebaseManager {
     }
 
 
-    public void getMeetingsForCurrentUser(OnSuccessListener<ArrayList<Meeting>> successListener, OnFailureListener failureListener) {
-        ArrayList<Meeting> meetings_objects = new ArrayList<>();
+//    public void getTeacherList(final TeacherListCallback callback) {
+//        ArrayList<TeacherClass> teachers = new ArrayList<>();
+//        db.collection("users")
+//                .whereEqualTo("userType", "teacher")
+//                .get()
+//                .addOnSuccessListener(queryDocumentSnapshots -> {
+//                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+//                        String id = document.getId();
+//                        String email = document.getString("email");
+//                        String name = document.getString("name");
+//                        String surname = document.getString("surname");
+//                        String phoneNumber = document.getString("phoneNumber");
+//                        String bio = document.getString("bio");
+//                        List<String> subjects = (List<String>) document.get("subjects");
+//
+//                        Map<String, Object> ratesMap = (Map<String, Object>) document.get("ratings");
+//                        List<Integer> rates = new ArrayList<>();
+//                        if (ratesMap != null) {
+//                            for (Object rate : ratesMap.values()) {
+//                                if (rate instanceof Number) {
+//                                    rates.add(((Number) rate).intValue());
+//                                }
+//                            }
+//                        }
+//
+//                        int price = Objects.requireNonNull(document.getLong("price")).intValue();
+//                        int picture = Objects.requireNonNull(document.getLong("picture")).intValue();
+//
+//                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture, phoneNumber, bio);
+//                        teachers.add(teacher);
+//                    }
+//                    callback.onTeacherListReceived(teachers);
+//                })
+//                .addOnFailureListener(Throwable::printStackTrace);
+//    }
 
-        db.collection("users").document(user.getUid()).collection("meetings")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Date startDate = document.getDate("date");
-                        String link = document.getString("link");
-                        String student = document.getString("student");
-                        String teacher = document.getString("teacher");
-                        Meeting spotkanie = new Meeting(startDate, link, student, teacher);
-                        meetings_objects.add(spotkanie);
+
+
+
+//    public void registerUser(String email, String password, String fullName, String role) {
+//        Log.d(TAG, "registerUser: Registering user with email: " + email + ", role: " + role);
+//
+//        mAuth.createUserWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful()) {
+//                        FirebaseUser user = mAuth.getCurrentUser();
+//                        if (user != null) {
+//                            Log.d(TAG, "registerUser: Firebase user created: " + user.getUid());
+//
+//                            Map<String, Object> userData = new HashMap<>();
+//                            userData.put("email", email);
+//                            userData.put("fullName", fullName);
+//                            userData.put("role", role);
+//
+//                            db.collection("users").document(user.getUid())
+//                                    .set(userData, SetOptions.merge())
+//                                    .addOnSuccessListener(aVoid -> {
+//                                        Log.d(TAG, "registerUser: User data saved to Firestore");
+//                                        Toast.makeText(context, "User registered successfully", Toast.LENGTH_SHORT).show();
+//                                        context.startActivity(new Intent(context, LoginActivity.class));
+//                                        ((SignupActivity) context).finish();
+//                                    })
+//                                    .addOnFailureListener(e -> {
+//                                        Log.e(TAG, "registerUser: Failed to save user data", e);
+//                                        Toast.makeText(context, "Error saving user data", Toast.LENGTH_SHORT).show();
+//                                    });
+//                        } else {
+//                            Log.e(TAG, "registerUser: FirebaseUser is null after registration");
+//                            Toast.makeText(context, "User is null.", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } else {
+//                        Log.e(TAG, "registerUser: Registration failed", task.getException());
+//                        Toast.makeText(context, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//    }
+
+    public void getUserData(String fieldName, OnDataRetrievedListener listener) {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            Log.d(TAG, "getUserData: Fetching '" + fieldName + "' for user: " + user.getUid());
+
+            DocumentReference userRef = db.collection("users").document(user.getUid());
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String data = document.getString(fieldName);
+                        Log.d(TAG, "getUserData: Retrieved data = " + data);
+                        listener.onDataRetrieved(data != null ? data : "");
+                    } else {
+                        Log.w(TAG, "getUserData: Document does not exist");
+                        listener.onDataRetrieved("");
                     }
-                    successListener.onSuccess(meetings_objects);
-                })
-                .addOnFailureListener(failureListener);
-    }
-    public void getTermsForTeacher(String userID, OnSuccessListener<ArrayList<Term>> successListener) {
-        ArrayList<Term> terms_objects = new ArrayList<>();
-
-        db.collection("users").document(userID).collection("terms")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Timestamp timestamp = document.getTimestamp("date");
-                        boolean isBooked = Boolean.TRUE.equals(document.getBoolean("isBooked"));
-                        String link = document.getString("link");
-                        Term term = new Term(timestamp, isBooked,link);
-                        terms_objects.add(term);
-                    }
-                    successListener.onSuccess(terms_objects);
-                })
-                .addOnFailureListener(e -> Toast.makeText(context,"Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                } else {
+                    Log.e(TAG, "getUserData: Failed to fetch document", task.getException());
+                    listener.onDataRetrieved("");
+                }
+            });
+        } else {
+            Log.w(TAG, "getUserData: No user signed in");
+            listener.onDataRetrieved("");
+        }
     }
 
-    public void addTermToFirebase(String userID, Timestamp timestamp, boolean isBooked, String link) {
-        Map<String, Object> termData = new HashMap<>();
-        termData.put("date", timestamp);
-        termData.put("isBooked", isBooked);
-        termData.put("link", link);
-
-        db.collection("users").document(userID).collection("terms")
-                .add(termData)
-                .addOnSuccessListener(documentReference -> Toast.makeText(context, "Term added", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> Toast.makeText(context,"Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    public interface OnDataRetrievedListener {
+        void onDataRetrieved(String data);
     }
 
-    public void getSubjectList(final SubjectListCallback callback) {
-        ArrayList<String> subjects = new ArrayList<>();
-        db.collection("subjects")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        String subject = document.getId();
-                        subjects.add(subject);
-                    }
-                    callback.onSubjectListReceived(subjects);
-                });
+
+//    public void navigateBasedOnRole(Context context) {
+//        FirebaseUser user = mAuth.getCurrentUser();
+//
+//        if (user != null) {
+//            db.collection("users").document(user.getUid())
+//                    .get()
+//                    .addOnSuccessListener(documentSnapshot -> {
+//                        if (documentSnapshot.exists()) {
+//                            String role = documentSnapshot.getString("role");
+//                            Log.d(TAG, "navigateBasedOnRole: User role = " + role);
+//
+//                            Intent intent;
+//                            switch (role) {
+//                                case "tutor":
+//                                    intent = new Intent(context, tutor_home.class);
+//                                    break;
+//                                case "tutee":
+//                                    intent = new Intent(context, tutee_home.class);
+//                                    break;
+//                                case "guest":
+//                                default:
+//                                    intent = new Intent(context, guest.class);
+//                                    break;
+//                            }
+//
+//                            context.startActivity(intent);
+//                        } else {
+//                            Log.w(TAG, "navigateBasedOnRole: No role found for user");
+//                            Toast.makeText(context, "User role not found.", Toast.LENGTH_SHORT).show();
+//                        }
+//                    })
+//                    .addOnFailureListener(e -> {
+//                        Log.e(TAG, "navigateBasedOnRole: Failed to get user role", e);
+//                        Toast.makeText(context, "Failed to load user data", Toast.LENGTH_SHORT).show();
+//                    });
+//        } else {
+//            Log.w(TAG, "navigateBasedOnRole: No user is signed in");
+//            Toast.makeText(context, "User not signed in", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
+
+    public interface OnUserProfileRetrieved {
+        void onUserProfileLoaded(HelperClass profile);
     }
 
-    public void getTeacherList(final TeacherListCallback callback) {
-        ArrayList<TeacherClass> teachers = new ArrayList<>();
-        db.collection("users")
-                .whereEqualTo("userType", "teacher")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        String id = document.getId();
-                        String email = document.getString("email");
-                        String name = document.getString("name");
-                        String surname = document.getString("surname");
-                        String phoneNumber = document.getString("phoneNumber");
-                        String bio = document.getString("bio");
-                        List<String> subjects = (List<String>) document.get("subjects");
-
-                        Map<String, Object> ratesMap = (Map<String, Object>) document.get("ratings");
-                        List<Integer> rates = new ArrayList<>();
-                        if (ratesMap != null) {
-                            for (Object rate : ratesMap.values()) {
-                                if (rate instanceof Number) {
-                                    rates.add(((Number) rate).intValue());
-                                }
-                            }
+    public void getUserProfile(OnUserProfileRetrieved callback) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            db.collection("users").document(user.getUid())
+                    .get()
+                    .addOnSuccessListener(snapshot -> {
+                        if (snapshot.exists()) {
+                            HelperClass profile = snapshot.toObject(HelperClass.class);
+                            callback.onUserProfileLoaded(profile);
+                        } else {
+                            Log.w(TAG, "getUserProfile: Document does not exist");
+                            callback.onUserProfileLoaded(null);
                         }
+                    })
+                    .addOnFailureListener(e -> {
+                        Log.e(TAG, "getUserProfile: Failed to retrieve", e);
+                        callback.onUserProfileLoaded(null);
+                    });
+        }
+    }
 
-                        int price = Objects.requireNonNull(document.getLong("price")).intValue();
-                        int picture = Objects.requireNonNull(document.getLong("picture")).intValue();
 
-                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture, phoneNumber, bio);
-                        teachers.add(teacher);
-                    }
-                    callback.onTeacherListReceived(teachers);
-                })
-                .addOnFailureListener(Throwable::printStackTrace);
+    public interface OnProfileUpdateListener {
+        void onUpdateSuccess();
+        void onUpdateFailure(Exception e);
+    }
+
+//    public void updateUserProfile(HelperClass profileData, OnProfileUpdateListener listener) {
+//        FirebaseUser user = mAuth.getCurrentUser();
+//        if (user != null) {
+//            db.collection("users").document(user.getUid())
+//                    .set(profileData, SetOptions.merge())
+//                    .addOnSuccessListener(aVoid -> {
+//                        Log.d(TAG, "updateUserProfile: Update successful");
+//                        listener.onUpdateSuccess();
+//                    })
+//                    .addOnFailureListener(e -> {
+//                        Log.e(TAG, "updateUserProfile: Failed to update", e);
+//                        listener.onUpdateFailure(e);
+//                    });
+//        } else {
+//            listener.onUpdateFailure(new Exception("No user signed in"));
+//        }
+//    }
+
+
+    public interface AvailabilitySaveListener {
+        void onSuccess();
+        void onFailure(Exception e);
     }
 
 
 
-    public void updateSubjects(String userID, List<String> newSubjects, Context context) {
-        Map<String, Object> updateMap = new HashMap<>();
-        updateMap.put("subjects", newSubjects);
+    public void saveAvailabilityForDay(String date, String startTime, String endTime, AvailabilitySaveListener listener) {
+        FirebaseUser user = mAuth.getCurrentUser();
 
-        db.collection("users").document(userID).set(updateMap, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Subjects actualized successfully", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    Toast.makeText(context, "Error during actualization", Toast.LENGTH_SHORT).show();
-                });
-    }
+        if (user == null) {
+            listener.onFailure(new Exception("User not authenticated"));
+            return;
+        }
 
-    public void getTeacherSubjects(String teacherID, OnSuccessListener<ArrayList<String>> successListener, OnFailureListener failureListener) {
-        db.collection("users").document(teacherID).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    ArrayList<String> teacherSubjects = new ArrayList<>();
-                    if (documentSnapshot.exists()) {
-                        teacherSubjects = (ArrayList<String>) documentSnapshot.get("subjects");
-                    }
-                    successListener.onSuccess(teacherSubjects);
-                })
-                .addOnFailureListener(e -> failureListener.onFailure(e));
-    }
+        String userId = user.getUid();
 
-    public void addMeetingForTeacherAndStudent(String teacherID, String studentID, Timestamp date, String link, String teacher, String student) {
-        Map<String, Object> meetingData = new HashMap<>();
-        meetingData.put("date", date);
-        meetingData.put("link", link);
-        meetingData.put("teacher", teacher);
-        meetingData.put("student", student);
+        // Validate inputs (optional)
+        if (date == null || startTime == null || endTime == null || date.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
+            listener.onFailure(new IllegalArgumentException("Date, start time, or end time is missing"));
+            return;
+        }
 
-        addMeetingToCollection(teacherID, meetingData);
-        addMeetingToCollection(studentID, meetingData);
+        // Create schedule map
+        Map<String, Object> schedule = new HashMap<>();
+        schedule.put("date", date);
+        schedule.put("startTime", startTime);
+        schedule.put("endTime", endTime);
+        schedule.put("timestamp", com.google.firebase.firestore.FieldValue.serverTimestamp());
 
-        updateTermsStatus(teacherID, date);
-    }
-
-    private void addMeetingToCollection(String userID, Map<String, Object> meetingData) {
-        db.collection("users").document(userID).collection("meetings")
-                .add(meetingData)
-                .addOnSuccessListener(documentReference -> Toast.makeText(context, "Meeting added", Toast.LENGTH_SHORT).show());
-    }
-
-    private void updateTermsStatus(String userID, Timestamp date) {
-        db.collection("users").document(userID).collection("terms")
-                .whereEqualTo("date", date)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        document.getReference().update("isBooked", true);
-                    }
-                });
-    }
-
-    public void updatePrice(String teacherId, int price){
-        Map<String, Object> updateMap = new HashMap<>();
-        updateMap.put("price", price);
-
-        db.collection("users").document(teacherId).set(updateMap, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Price actualized successfully", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    Toast.makeText(context, "Error during updating price", Toast.LENGTH_SHORT).show();
-                });
-    }
-    public void addRate(String teacherId, String studentId, int rate) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        Map<String, Object> newRating = new HashMap<>();
-        newRating.put("studentId", studentId);
-        newRating.put("value", rate);
-
-
-        db.collection("users").document(teacherId)
-                .update("ratings." + studentId, rate)
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Rate added successfully", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    Toast.makeText(context, "\"Error during adding rate", Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    public void getTeacherById(String userId, final TeacherCallback callback) {
+        // Save to Firestore under availability subcollection
         db.collection("users")
                 .document(userId)
+                .collection("availability")
+                .document(date)  // Date as document ID
+                .set(schedule)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d(TAG, "Availability saved for " + date);
+                    listener.onSuccess();
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Failed to save availability for " + date, e);
+                    listener.onFailure(e);
+                });
+    }
+
+
+    public interface OnAvailabilityFetchedListener {
+        void onSuccess(List<Map<String, Object>> availabilityList);
+        void onFailure(Exception e);
+    }
+
+    public void fetchTutorAvailability(OnAvailabilityFetchedListener listener) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null) {
+            listener.onFailure(new Exception("User not authenticated"));
+            return;
+        }
+
+        db.collection("users")
+                .document(user.getUid())
+                .collection("availability")
+                .orderBy("timestamp")  // Optional: ordered by saved time
                 .get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists() && "teacher".equals(documentSnapshot.getString("userType"))) {
-                        String id = documentSnapshot.getId();
-                        String email = documentSnapshot.getString("email");
-                        String name = documentSnapshot.getString("name");
-                        String surname = documentSnapshot.getString("surname");
-                        String phoneNumber = documentSnapshot.getString("phoneNumber");
-                        String bio = documentSnapshot.getString("bio");
-                        List<String> subjects = (List<String>) documentSnapshot.get("subjects");
-
-                        Map<String, Object> ratesMap = (Map<String, Object>) documentSnapshot.get("ratings");
-                        List<Integer> rates = new ArrayList<>();
-                        if (ratesMap != null) {
-                            for (Object rate : ratesMap.values()) {
-                                if (rate instanceof Number) {
-                                    rates.add(((Number) rate).intValue());
-                                }
-                            }
-                        }
-
-                        int price = Objects.requireNonNull(documentSnapshot.getLong("price")).intValue();
-                        int picture = Objects.requireNonNull(documentSnapshot.getLong("picture")).intValue();
-
-                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture, phoneNumber, bio);
-                        callback.onTeacherReceived(teacher);
-                    } else {
-                        callback.onTeacherReceived(null);
+                .addOnSuccessListener(querySnapshots -> {
+                    List<Map<String, Object>> result = new ArrayList<>();
+                    for (DocumentSnapshot doc : querySnapshots) {
+                        Map<String, Object> data = doc.getData();
+                        data.put("docId", doc.getId());  // Keep track of the document ID for deletion
+                        result.add(data);
                     }
+                    listener.onSuccess(result);
                 })
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    callback.onTeacherReceived(null);
-                });
+                .addOnFailureListener(listener::onFailure);
     }
 
 
-    public void getImage(String userID, OnSuccessListener<Integer> successListener, OnFailureListener failureListener) {
-        db.collection("users").document(userID).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    int picture = Objects.requireNonNull(documentSnapshot.getLong("picture")).intValue();
-                    successListener.onSuccess(picture);
-                })
-                .addOnFailureListener(failureListener);
+
+    public boolean isEmailVerified() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        return user != null && user.isEmailVerified();
     }
 
-    public void setImage(String userID, int picture) {
-        Map<String, Object> updateMap = new HashMap<>();
-        updateMap.put("picture", picture);
 
-        db.collection("users").document(userID).set(updateMap, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, "Image updated successfully", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    Toast.makeText(context, "Error during updating image", Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    public void addAvailabilitySlot(String tutorId, Timestamp startTime, Timestamp endTime) {
-        Map<String, Object> availability = new HashMap<>();
-        availability.put("tutorId", tutorId);
-        availability.put("startTime", startTime);
-        availability.put("endTime", endTime);
-        availability.put("isBooked", false); // Optional flag for booking status
-
-        db.collection("availability")
-                .add(availability)
-                .addOnSuccessListener(documentReference -> {
-                    Log.d("FirebaseManager", "Availability added with ID: " + documentReference.getId());
-                    Toast.makeText(context, "Availability added successfully", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    Toast.makeText(context, "Failed to add availability", Toast.LENGTH_SHORT).show();
-                });
-    }
 
 
 }
