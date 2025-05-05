@@ -3,7 +3,6 @@ package com.example.clarix.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -16,17 +15,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
 import com.example.clarix.R;
 import com.example.clarix.database_handlers.FirebaseManager;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class ManageProfileActivity extends AppCompatActivity {
-
-    private static final int REQUEST_IMAGE_PICK = 1;
 
     private EditText nameField, surnameField, phoneField, bioField, rateField;
     private TextView emailView;
@@ -35,7 +34,6 @@ public class ManageProfileActivity extends AppCompatActivity {
     private FirebaseUser user;
     private ImageView profileImage;
     private Uri selectedImageUri;
-    private int fallbackImageRes = R.drawable.annonym;
     private List<String> subjects;
 
     private final ActivityResultLauncher<Intent> imagePickerLauncher =
@@ -46,7 +44,6 @@ public class ManageProfileActivity extends AppCompatActivity {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
                         profileImage.setImageBitmap(bitmap);
                     } catch (IOException e) {
-                        Log.d("UPLOAD_URI", "Uri: " + selectedImageUri.toString());
                         Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -64,12 +61,6 @@ public class ManageProfileActivity extends AppCompatActivity {
             return insets;
         });
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//            if (checkSelfPermission(Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION) != PackageManager.PERMISSION_GRANTED) {
-//                requestPermissions(new String[]{Manifest.permission.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}, 101);
-//            }
-//        }
-
         manager = new FirebaseManager(this);
         user = manager.getCurrentUser();
 
@@ -86,7 +77,6 @@ public class ManageProfileActivity extends AppCompatActivity {
         Button changePwdBtn = findViewById(R.id.btn_change_password);
         Button backBtn = findViewById(R.id.btn_back_home);
 
-        // Load subjects from strings.xml
         subjects = Arrays.asList(getResources().getStringArray(R.array.subjects_array));
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, subjects);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -94,22 +84,7 @@ public class ManageProfileActivity extends AppCompatActivity {
 
         if (user != null) {
             emailView.setText(user.getEmail());
-
-
-//            manager.getTeacherById(user.getUid(), teacher -> {
-//                if (teacher != null) {
-//                    nameField.setText(teacher.getName());
-//                    surnameField.setText(teacher.getSurname());
-//                    phoneField.setText(teacher.getPhoneNumber());
-//                    bioField.setText(teacher.getBio());
-//                    rateField.setText(String.valueOf(teacher.getPrice()));
-//
-//                    if (teacher.getSubjects() != null && !teacher.getSubjects().isEmpty()) {
-//                        int index = subjects.indexOf(teacher.getSubjects().get(0));
-//                        if (index >= 0) subjectSpinner.setSelection(index);
-//                    }
-//                }
-//            });
+            loadTeacherData(user.getUid());
         }
 
         profileImage.setOnClickListener(v -> {
@@ -138,14 +113,12 @@ public class ManageProfileActivity extends AppCompatActivity {
                 return;
             }
 
-            // Save basic info
             manager.updateTeacherProfile(user.getUid(), name, surname, phone, bio, subject, rate);
 
-            // Save profile image if selected
             if (selectedImageUri != null) {
-                manager.uploadProfileImage(user.getUid(), selectedImageUri, uri -> {
-                    Toast.makeText(this, "Profile image uploaded", Toast.LENGTH_SHORT).show();
-                });
+                manager.uploadProfileImage(user.getUid(), selectedImageUri, uri ->
+                        Toast.makeText(this, "Profile image uploaded", Toast.LENGTH_SHORT).show()
+                );
             }
         });
 
@@ -156,5 +129,44 @@ public class ManageProfileActivity extends AppCompatActivity {
         backBtn.setOnClickListener(v ->
                 startActivity(new Intent(this, TeacherMainView.class))
         );
+    }
+
+    private void loadTeacherData(String uid) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("users").document(uid).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String role = documentSnapshot.getString("userType");
+                        if ("teacher".equals(role)) {
+                            nameField.setText(documentSnapshot.getString("name"));
+                            surnameField.setText(documentSnapshot.getString("surname"));
+                            phoneField.setText(documentSnapshot.getString("phoneNumber"));
+                            bioField.setText(documentSnapshot.getString("bio"));
+                            rateField.setText(String.valueOf(documentSnapshot.getLong("price")));
+                            emailView.setText(documentSnapshot.getString("email"));
+
+                            List<String> subjectsList = (List<String>) documentSnapshot.get("subjects");
+                            if (subjectsList != null && !subjectsList.isEmpty()) {
+                                int index = subjects.indexOf(subjectsList.get(0));
+                                if (index >= 0) subjectSpinner.setSelection(index);
+                            }
+
+                            String profileImageUrl = documentSnapshot.getString("profileImageUrl");
+                            if (profileImageUrl != null && !profileImageUrl.isEmpty()) {
+                                Glide.with(this)
+                                        .load(profileImageUrl)
+                                        .placeholder(R.drawable.annonym)
+                                        .into(profileImage);
+                            }
+                        } else {
+                            Toast.makeText(this, "This user is not a teacher.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error loading teacher data", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                });
     }
 }

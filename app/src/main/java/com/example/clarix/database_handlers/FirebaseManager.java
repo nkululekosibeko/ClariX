@@ -126,25 +126,6 @@ public class FirebaseManager {
 
     }
 
-    public void updateTeacherProfile(String uid, String name, String surname, String phone, String bio, String subject, int rate) {
-        Map<String, Object> updateMap = new HashMap<>();
-        updateMap.put("name", name);
-        updateMap.put("surname", surname);
-        updateMap.put("phoneNumber", phone);
-        updateMap.put("bio", bio);
-        updateMap.put("subjects", Arrays.asList(subject));
-        updateMap.put("price", rate);
-
-        db.collection("users").document(uid)
-                .set(updateMap, SetOptions.merge())
-                .addOnSuccessListener(aVoid ->
-                        Toast.makeText(context, "Profile updated successfully", Toast.LENGTH_SHORT).show()
-                )
-                .addOnFailureListener(e -> {
-                    e.printStackTrace();
-                    Toast.makeText(context, "Error updating profile", Toast.LENGTH_SHORT).show();
-                });
-    }
 
     public void uploadProfileImage(String userId, Uri imageUri, OnSuccessListener<String> callback) {
         if (imageUri == null || userId == null || userId.isEmpty()) {
@@ -189,41 +170,56 @@ public class FirebaseManager {
     }
 
 
-//    public void getTeacherList(final TeacherListCallback callback) {
-//        ArrayList<TeacherClass> teachers = new ArrayList<>();
-//        db.collection("users")
-//                .whereEqualTo("userType", "teacher")
-//                .get()
-//                .addOnSuccessListener(queryDocumentSnapshots -> {
-//                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-//                        String id = document.getId();
-//                        String email = document.getString("email");
-//                        String name = document.getString("name");
-//                        String surname = document.getString("surname");
-//                        String phoneNumber = document.getString("phoneNumber");
-//                        String bio = document.getString("bio");
-//                        List<String> subjects = (List<String>) document.get("subjects");
-//
-//                        Map<String, Object> ratesMap = (Map<String, Object>) document.get("ratings");
-//                        List<Integer> rates = new ArrayList<>();
-//                        if (ratesMap != null) {
-//                            for (Object rate : ratesMap.values()) {
-//                                if (rate instanceof Number) {
-//                                    rates.add(((Number) rate).intValue());
-//                                }
-//                            }
-//                        }
-//
-//                        int price = Objects.requireNonNull(document.getLong("price")).intValue();
-//                        int picture = Objects.requireNonNull(document.getLong("picture")).intValue();
-//
-//                        TeacherClass teacher = new TeacherClass(id, email, name, surname, subjects, rates, price, picture, phoneNumber, bio);
-//                        teachers.add(teacher);
-//                    }
-//                    callback.onTeacherListReceived(teachers);
-//                })
-//                .addOnFailureListener(Throwable::printStackTrace);
-//    }
+    public void getTeacherById(String uid, OnTeacherFetchedListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(uid)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        // Check if user is a teacher
+                        String userType = documentSnapshot.getString("userType");
+                        if ("teacher".equals(userType)) {
+                            TeacherClass teacher = documentSnapshot.toObject(TeacherClass.class);
+                            listener.onTeacherFetched(teacher);
+                        } else {
+                            listener.onTeacherFetched(null);
+                        }
+                    } else {
+                        listener.onTeacherFetched(null);
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("FirebaseManager", "Failed to fetch teacher", e);
+                    listener.onTeacherFetched(null);
+                });
+    }
+
+    public interface OnTeacherFetchedListener {
+        void onTeacherFetched(TeacherClass teacher);
+    }
+
+
+    public void updateTeacherProfile(String uid, String name, String surname, String phone, String bio, String subject, int rate) {
+        Map<String, Object> updateMap = new HashMap<>();
+        updateMap.put("name", name);
+        updateMap.put("surname", surname);
+        updateMap.put("phoneNumber", phone);
+        updateMap.put("bio", bio);
+        updateMap.put("subjects", Arrays.asList(subject));
+        updateMap.put("price", rate);
+
+        db.collection("users").document(uid)
+                .set(updateMap, SetOptions.merge())  //  Merges only the provided fields
+                .addOnSuccessListener(aVoid ->
+                        Toast.makeText(context, "Profile updated successfully", Toast.LENGTH_SHORT).show()
+                )
+                .addOnFailureListener(e -> {
+                    e.printStackTrace();
+                    Toast.makeText(context, "Error updating profile", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+
 
 
 
