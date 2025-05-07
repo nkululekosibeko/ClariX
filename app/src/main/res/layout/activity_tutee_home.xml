@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@color/white"
+    tools:context=".tutee_home">
+
+    <TextView
+        android:id="@+id/tuteeWelcomeText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tutee Dashboard"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/btnSearchTutors"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Search Tutor Availability"
+        android:textStyle="bold"
+        android:backgroundTint="@color/green"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/tuteeWelcomeText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="View Profile"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/blue"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/btnSearchTutors"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnChatbot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Chatbot"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/purple_700"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/btnProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- My Bookings Button -->
+    <Button
+        android:id="@+id/btnMyBookings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="My Bookings"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/teal_700"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/btnChatbot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Logout Button -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/red"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/btnMyBookings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

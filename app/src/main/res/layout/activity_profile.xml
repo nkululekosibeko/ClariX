@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollbars="none">
+    <LinearLayout android:orientation="vertical"
+        android:gravity="center_horizontal"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ProfileActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/profileImg"
+                android:src="@drawable/backg"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+                <TextView
+                    android:id="@+id/book_app_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/book_appointment"
+                    android:layout_gravity="center"
+                    android:textColor="@color/green"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_marginEnd="35dp"
+                android:layout_height="50dp"
+                android:background="@drawable/baseline_chevron_right_24">
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp"
+                android:layout_gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayout"
+                    android:orientation="vertical"
+                    android:padding="2dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="8dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/name"
+                            android:layout_weight="1"
+                            android:text="Name"
+                            android:textStyle="bold"
+                            android:textColor="@color/dark"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/profileName"
+                            android:text="Loading..."
+                            android:layout_weight="1"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/dark"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:alpha="0.5"
+                        android:background="@color/dark"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bio"
+                            android:textStyle="bold"
+                            android:textColor="@color/dark"
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/profileBio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/dark"
+                            android:textSize="14sp"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:alpha="0.5"
+                        android:background="@color/dark"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/phone"
+                            android:layout_weight="1"
+                            android:text="Phone"
+                            android:textStyle="bold"
+                            android:textColor="@color/dark"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/profilePhone"
+                            android:text="Loading..."
+                            android:layout_weight="1"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/dark"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:alpha="0.5"
+                        android:background="@color/dark"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/email"
+                            android:layout_weight="1"
+                            android:text="Email"
+                            android:textStyle="bold"
+                            android:textColor="@color/dark"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/profileEmail"
+                            android:text="Loading..."
+                            android:layout_weight="1"
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/dark"
+                            android:textSize="14sp"/>
+
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:alpha="0.5"
+                        android:background="@color/dark"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Specialization"
+                            android:textStyle="bold"
+                            android:textColor="@color/dark"
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/profileSpecialization"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/dark"
+                            android:textSize="14sp"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:alpha="0.5"
+                        android:background="@color/dark"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:padding="8dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rate (R/hour)"
+                            android:textStyle="bold"
+                            android:textColor="@color/dark"
+                            android:textSize="18sp"
+                            android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/profileRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Loading..."
+                            android:textAlignment="viewEnd"
+                            android:textColor="@color/dark"
+                            android:textSize="14sp"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+
+
+                    <RelativeLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <Button
+                            android:layout_width="150dp"
+                            android:layout_height="60dp"
+                            android:text="@string/edit_profile"
+                            android:id="@+id/editButton"
+                            android:textSize="11sp"
+                            android:layout_alignParentStart="true"/>
+                        <Button
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:text="@string/change_passwordd"
+                            android:id="@+id/changePassword"
+                            android:textSize="11sp"
+                            android:backgroundTint="@color/dark"
+                            android:layout_alignParentEnd="true"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

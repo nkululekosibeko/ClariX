@@ -1,15 +1,15 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.gms.google.services)
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.clarix"
+    namespace = "ell.one.clarix"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.clarix"
-        minSdk = 27
+        applicationId = "ell.one.clarix"
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -38,21 +38,18 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-
+    implementation(libs.credentials)
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("org.json:json:20231013")
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-firestore")
-    implementation("com.google.firebase:firebase-storage")
-
-
     implementation("androidx.gridlayout:gridlayout:1.0.0")
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
-
-    implementation(libs.credentials)
     implementation(libs.credentials.play.services.auth)
     implementation(libs.googleid)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

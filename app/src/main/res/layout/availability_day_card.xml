@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Day Label or Info Header -->
+        <TextView
+            android:id="@+id/dayLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Availability"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark" />
+
+        <!-- Select Date -->
+        <Button
+            android:id="@+id/selectDateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Date"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white" />
+
+        <!-- Select Start Time -->
+        <Button
+            android:id="@+id/selectStartTimeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Start Time"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white" />
+
+        <!-- Select End Time -->
+        <Button
+            android:id="@+id/selectEndTimeButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select End Time"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white" />
+
+        <!-- Optional: Add more slots or visual container (future use) -->
+        <LinearLayout
+            android:id="@+id/timeSlotsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/addSlotButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Add Time Slot"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white"
+            android:visibility="gone" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

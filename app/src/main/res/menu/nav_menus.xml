@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/nav_prof"
+        android:title="@string/profile"/>
+
+    <item
+        android:id="@+id/nav_history"
+        android:title="@string/view_history"/>
+
+    <item
+        android:id="@+id/nav_password"
+        android:title="@string/change_password"/>
+
+    <item
+        android:id="@+id/nav_comment"
+        android:title="@string/comment_on_service"/>
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="@string/logout"/>
+</menu>

@@ -1,31 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="green">#04AE4A</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="lime">#b388ff</color>
+    <color name="bluegray">#301860</color>
+    <color name="light_green">#00e676</color>
+    <color name="dark">#000000</color>
+    <color name="light_blue">#17f9ff</color>
+    <color name="blue">#0003c5</color>
+    <color name="dark_red">#f67280</color>
+    <color name="dark_grey">#7b8f8a</color>
+    <color name="light_grey">#27FBF8F8</color>
+    <color name="red">#f44336</color>
 
-    <!--Pallet One-->
-    <color name="blue">#B7E0FF</color>
-    <color name="yellow">#FFF5CD</color>
-    <color name="peach_weak">#FFCFB3</color>
-    <color name="peach_strong">#E78F81</color>
 
-    <!--Pallet Two-->
-    <color name="green_dark">#347928</color>
-    <color name="green_light">#C0EBA6</color>
-    <color name="yellow_cream">#FFFBE6</color>
-    <color name="yellow_summer">#FCCD2A</color>
 
-    <!--Pallet Three-->
-    <color name="sweet_blue">#8EACCD</color>
-    <color name="mixed_blue">#DEE5D4</color>
-    <color name="yellow_cream_two">#FEF9D9</color>
-    <color name="blue_cream">#D2E0FB</color>
 
-    <!--Pallet Four-->
-    <color name="teal_blue">#498BC8</color>
-    <color name="beige">#F2E5BF</color>
-    <color name="sweet_orange">#FD8B51</color>
-    <color name="dark_orange">#CB6040</color>
+        <!--Pallet One-->
+        <color name="bluee">#B7E0FF</color>
+        <color name="yellow">#FFF5CD</color>
+        <color name="peach_weak">#FFCFB3</color>
+        <color name="peach_strong">#E78F81</color>
+
+        <!--Pallet Two-->
+        <color name="green_dark">#347928</color>
+        <color name="green_light">#C0EBA6</color>
+        <color name="yellow_cream">#FFFBE6</color>
+        <color name="yellow_summer">#FCCD2A</color>
+
+        <!--Pallet Three-->
+        <color name="sweet_blue">#8EACCD</color>
+        <color name="mixed_blue">#DEE5D4</color>
+        <color name="yellow_cream_two">#FEF9D9</color>
+        <color name="blue_cream">#D2E0FB</color>
+
+        <!--Pallet Four-->
+        <color name="teal_blue">#498BC8</color>
+        <color name="beige">#F2E5BF</color>
+        <color name="sweet_orange">#FD8B51</color>
+        <color name="dark_orange">#CB6040</color>
+
+
 
 
 </resources>

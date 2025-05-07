@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "968389472086",
-    "project_id": "clarix-6d837",
-    "storage_bucket": "clarix-6d837.firebasestorage.app"
+    "project_number": "795186831519",
+    "project_id": "clarix-final",
+    "storage_bucket": "clarix-final.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:968389472086:android:0f3e27aae56e97bd34f0f7",
+        "mobilesdk_app_id": "1:795186831519:android:21df8737ff701edaee82aa",
         "android_client_info": {
-          "package_name": "com.example.clarix"
+          "package_name": "ell.one.clarix"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAI7nbHxo-jRaSmNNIqhUqLhhaITfZH8Bg"
+          "current_key": "AIzaSyAqF__DYqoriuLOaihuaQPTjyqglsnpa5w"
         }
       ],
       "services": {

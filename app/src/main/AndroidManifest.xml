@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,19 +10,87 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ClariX"
+        android:theme="@style/Theme.TutorLink"
         tools:targetApi="31">
         <activity
-            android:name=".activities.SetAvailability"
+            android:name=".PaymentActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ViewScheduleActivity"
+            android:name=".ChatbotActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ManageProfileActivity"
+            android:name=".TutorBookings"
             android:exported="false" />
         <activity
-            android:name=".activities.Welcome"
+            android:name=".activity_tutee_bookings"
+            android:exported="false" />
+        <activity
+            android:name=".activity_book_session"
+            android:exported="false" />
+        <activity
+            android:name=".activity_tutor_detail"
+            android:exported="false" />
+        <activity
+            android:name=".activity_search_tutors"
+            android:exported="false" />
+        <activity
+            android:name=".ViewScheduleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".set_availability"
+            android:exported="false" />
+        <activity
+            android:name=".guest"
+            android:exported="false" />
+        <activity
+            android:name=".tutee_home"
+            android:exported="false" />
+        <activity
+            android:name=".tutor_home"
+            android:exported="false"
+            android:theme="@style/Theme.TutorLink" />
+        <activity
+            android:name=".DeleteProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".DetailActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".HistoryActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".SplashActivity" -->
+        <!-- android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name=".CommentActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".AppointmentActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".MainActivity" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".SignupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,42 +98,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity-->
-<!--            android:name=".activities.SelectProfilePictureView"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".activities.ReserveTermView"-->
-<!--            android:exported="false" />-->
-        <activity
-            android:name=".activities.TeacherAccountView"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".activities.TutorBrowserView"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".activities.SubjectView"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".activities.AddingTermView"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".activities.TeacherTermsView"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".activities.MeetingsView"-->
-<!--            android:exported="false" />-->
-        <activity
-            android:name=".activities.StudentMainView"
-            android:exported="false" />
-        <activity
-            android:name=".activities.SignUp"
-            android:exported="false" />
-        <activity
-            android:name=".activities.LogIn"
-            android:exported="true" />
-        <activity
-            android:name=".activities.TeacherMainView"
-            android:exported="true" />
     </application>
 
 </manifest>

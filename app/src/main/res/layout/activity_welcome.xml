@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/welcome_layout"
+    android:id="@+id/intro_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pagebkg"
-    tools:context=".activities.Welcome">
+    tools:context=".IntroActivity">
 
     <!-- Overlay Layout with Existing UI Elements -->
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -38,29 +38,17 @@
             android:textColor="@color/black"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/wlcm_signup_button"
+            android:id="@+id/wlcm_btn"
             android:background="@drawable/button_background"
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:textSize="18sp"
-            android:text="Sign Up"
+            android:text="Get Started"
             android:textStyle="bold"
             android:textColor="@color/beige"
             android:layout_marginTop="200dp"
             app:cornerRadius="20dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/wlcm_signin_button"
-            android:background="@drawable/button_background"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:textSize="18sp"
-            android:text="Sign In"
-            android:textStyle="bold"
-            android:textColor="@color/beige"
-            android:layout_marginTop="25dp"
-            app:cornerRadius="20dp"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

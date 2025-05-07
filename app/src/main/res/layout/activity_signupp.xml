@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signup_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/pagebkg_main"
+    tools:context=".SignupActivity">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Content inside CardView -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/container_border"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textAlignment="center"
+                android:textColor="@color/teal_blue"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/fullname_singup"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/textedit_border"
+                android:drawablePadding="8dp"
+                android:hint="Full Name"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signup_email"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/textedit_border"
+                android:drawablePadding="8dp"
+                android:hint="Email Address"
+                android:inputType="textEmailAddress"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signup_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/textedit_border"
+                android:drawablePadding="8dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/signup_conf_pass"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/textedit_border"
+                android:drawablePadding="8dp"
+                android:inputType="textPassword"
+                android:hint="Confirm Password"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+
+            <RadioGroup
+                android:id="@+id/role_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="35dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <RadioButton
+                    android:id="@+id/radio_tutor"
+                    android:layout_width="75dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#3B608C"
+                    android:paddingRight="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Tutor"
+                    android:textColor="#3B608C"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:paddingStart="8dp"
+                    android:background="@drawable/container_background"/>
+
+                <RadioButton
+                    android:id="@+id/radio_tutee"
+                    android:layout_width="75dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#3B608C"
+                    android:paddingRight="10dp"
+                    android:text="Student"
+                    android:textColor="#3B608C"
+                    android:textSize="14sp"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    android:paddingStart="8dp"
+                    android:background="@drawable/container_background"/>
+            </RadioGroup>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:padding="8dp"
+                android:text="Already an user? Login"
+                android:textColor="@drawable/text_color_selector"
+                android:textSize="18sp" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/signup_button"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="35dp"
+                android:background="@drawable/button_background"
+                android:text="Sign Up"
+                android:textColor="@color/beige"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:cornerRadius="20dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
