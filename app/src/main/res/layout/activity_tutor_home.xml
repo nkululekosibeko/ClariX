@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tutor_home"
+    tools:context=".activities.tutor_home"
     android:background="#F5F5F5"
     android:padding="30dp">
 

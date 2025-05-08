@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ell.one.clarix.R;
-import ell.one.clarix.BookingModel;
+import ell.one.clarix.models.BookingModel;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.BookingViewHolder> {
 

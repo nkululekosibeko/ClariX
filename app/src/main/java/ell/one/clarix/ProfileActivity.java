@@ -17,6 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ell.one.clarix.activities.ChangePasswordActivity;
+import ell.one.clarix.activities.EditProfileActivity;
+import ell.one.clarix.activities.LoginActivity;
+import ell.one.clarix.activities.tutor_home;
 import ell.one.clarix.database_handlers.FirebaseManager;
 
 public class ProfileActivity extends AppCompatActivity {

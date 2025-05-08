@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import ell.one.clarix.HelperClass;
+import ell.one.clarix.R;
 import ell.one.clarix.database_handlers.FirebaseManager;
 
 public class EditProfileActivity extends AppCompatActivity {

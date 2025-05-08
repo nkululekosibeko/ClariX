@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import ell.one.clarix.R;
 import ell.one.clarix.database_handlers.FirebaseManager;
 
 public class tutee_home extends AppCompatActivity {

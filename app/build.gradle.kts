@@ -41,6 +41,11 @@ dependencies {
     implementation(libs.credentials)
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("org.json:json:20231013")
+
+    implementation("com.github.PayHereDevs:payhere-android-sdk:v3.0.17")
+    implementation("androidx.appcompat:appcompat:1.6.0") // ignore if you have already added
+    implementation("com.google.code.gson:gson:2.8.0") // ignore if you have already added
+
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")

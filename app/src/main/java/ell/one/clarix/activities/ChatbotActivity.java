@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ell.one.clarix.models.ChatMessage;
+import ell.one.clarix.R;
 import ell.one.clarix.data_adapters.ChatAdapter;
 import okhttp3.Call;
 import okhttp3.Callback;

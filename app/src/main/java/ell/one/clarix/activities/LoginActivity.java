@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import ell.one.clarix.R;
 import ell.one.clarix.database_handlers.FirebaseManager;
 
 public class LoginActivity extends AppCompatActivity {

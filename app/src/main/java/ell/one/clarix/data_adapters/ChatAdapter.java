@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ell.one.clarix.ChatMessage;
+import ell.one.clarix.models.ChatMessage;
 import ell.one.clarix.R;
 
 public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

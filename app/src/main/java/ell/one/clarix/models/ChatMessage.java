@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.models;
 
 public class ChatMessage {
     private String text;

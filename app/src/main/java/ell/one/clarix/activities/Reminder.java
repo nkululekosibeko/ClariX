@@ -1,8 +1,10 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import ell.one.clarix.R;
 
 public class Reminder extends AppCompatActivity {
 

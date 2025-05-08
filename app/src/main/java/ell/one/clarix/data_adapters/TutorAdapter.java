@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import ell.one.clarix.R;
-import ell.one.clarix.TutorModel;
+import ell.one.clarix.models.TutorModel;
 
 public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.TutorViewHolder> {
 

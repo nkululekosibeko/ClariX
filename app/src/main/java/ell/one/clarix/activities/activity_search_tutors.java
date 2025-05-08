@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import ell.one.clarix.R;
+import ell.one.clarix.models.TutorModel;
 import ell.one.clarix.data_adapters.TutorAdapter;
 
 import androidx.activity.EdgeToEdge;

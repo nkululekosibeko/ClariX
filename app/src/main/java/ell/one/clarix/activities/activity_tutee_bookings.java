@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ell.one.clarix.models.BookingModel;
+import ell.one.clarix.R;
 import ell.one.clarix.data_adapters.BookingAdapter;
 
 public class activity_tutee_bookings extends AppCompatActivity {
@@ -37,15 +39,15 @@ public class activity_tutee_bookings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_tutee_bookings);
+        setContentView(ell.one.clarix.R.layout.activity_tutee_bookings);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(ell.one.clarix.R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        recyclerView = findViewById(R.id.tuteeBookingsRecycler);
+        recyclerView = findViewById(ell.one.clarix.R.id.tuteeBookingsRecycler);
         Button btnBackToHome = findViewById(R.id.btnBackToHome);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

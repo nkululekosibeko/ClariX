@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#F5F5F5"
     android:padding="16dp"
-    tools:context=".ChatbotActivity">
+    tools:context=".activities.ChatbotActivity">
 
     <!-- RecyclerView for chat history -->
     <androidx.recyclerview.widget.RecyclerView

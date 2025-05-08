@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
+
+import ell.one.clarix.ProfileActivity;
+import ell.one.clarix.R;
 
 public class DeleteProfileActivity extends AppCompatActivity {
 

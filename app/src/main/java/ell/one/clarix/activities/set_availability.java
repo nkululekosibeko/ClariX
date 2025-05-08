@@ -1,4 +1,4 @@
-package ell.one.clarix;
+package ell.one.clarix.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import ell.one.clarix.R;
 import ell.one.clarix.database_handlers.FirebaseManager;
 
 public class set_availability extends AppCompatActivity {

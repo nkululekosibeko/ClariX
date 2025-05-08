@@ -19,11 +19,11 @@ import java.util.List;
 import java.util.Map;
 
 import ell.one.clarix.HelperClass;
-import ell.one.clarix.LoginActivity;
-import ell.one.clarix.SignupActivity;
-import ell.one.clarix.guest;
-import ell.one.clarix.tutee_home;
-import ell.one.clarix.tutor_home;
+import ell.one.clarix.activities.LoginActivity;
+import ell.one.clarix.activities.SignupActivity;
+import ell.one.clarix.activities.guest;
+import ell.one.clarix.activities.tutee_home;
+import ell.one.clarix.activities.tutor_home;
 
 public class FirebaseManager {
 
